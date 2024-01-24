@@ -3,7 +3,9 @@
 /public/build
 /public/hot
 /public/storage
-/storage
+/storage/livewire-tmp
+/storage/logs/*.log
+/storage/public/section-images
 /storage/*.key
 /vendor
 .env
