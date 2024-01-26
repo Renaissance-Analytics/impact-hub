@@ -25,8 +25,8 @@ Route::get('/register', \App\Livewire\Account\Register::class)->name('register')
 Route::group(['prefix' => 'x', 'middleware' => 'isAdmin'], function () {
     Route::get('/', App\Livewire\Game\Admin\XDash::class)->name('x');
     Route::get('/users', App\Livewire\Game\Admin\User\UList::class)->name('x.users');
+    Route::get('/users/create', App\Livewire\Game\Admin\User\UShow::class);
     Route::get('/users/{user}/edit', App\Livewire\Game\Admin\User\UShow::class);
-    Route::get('/users/', App\Livewire\Game\Admin\User\UShow::class);
     Route::get('/game', App\Livewire\Game\Admin\GameAdmin::class)->name('x.game');
     Route::get('/game/levels', App\Livewire\Game\Admin\Levels\LList::class)->name('x.levels');
     Route::get('/settings', App\Livewire\Cms\Admin\Settings::class)->name('x.settings');

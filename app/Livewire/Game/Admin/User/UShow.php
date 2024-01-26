@@ -85,6 +85,8 @@ class UShow extends Component
     {
         $validatedData = $this->validate();
 
+        //dd($validatedData);
+
         if (!empty($this->mod_password)) {
             $validatedData['password'] = bcrypt($this->mod_password);
         } else {
