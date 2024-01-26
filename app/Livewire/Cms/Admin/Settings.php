@@ -19,25 +19,40 @@ class Settings extends Component
 
     public $settings = [];
 
+    public $settingsForm = [];
+
+    public function rules()
+    {
+        $rules = [];
+        foreach ($this->settings as $setting) {
+            $field = 'settingsForm.' . camel_case($setting->key);
+            $rules[$field] = $setting->type;
+        }
+        return $rules;
+    }
+
     public function mount()
     {
         // Load all settings from the database
-        $this->settings = Setting::all();
+        $this->settings = new Setting();
 
         // Set the default values for the settings
         $this->settings->each(function ($setting) {
-            $this->{$setting->key} = $setting->value;
+            $this->settingsForm[$setting->key]  = $setting->value;
         });
-        
+        //dd($this->settings->appName);
     }
 
     public function updateSetting($key)
     {
-        $setting = Setting::firstOrNew(['key' => $key]);
-        $setting->value = $this->{$key};
-        $setting->save();
-        
-        $this->success('Setting updated successfully.');
+        $setting = Setting::where('key', $key)->first();
+        if ($setting) {
+            $setting->value = $this->settingsForm[$key];
+            $setting->save();
+            $this->success('Setting updated successfully.');
+        } else {
+            $this->error('Setting not found.');
+        }
     }
     
     public function render()

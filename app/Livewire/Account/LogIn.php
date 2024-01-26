@@ -15,6 +15,23 @@ class LogIn extends Component
     public $email;
     public $password;
     public $remember;
+    public $demo = true; //change to false to disable demo login
+
+    public function rules()
+    {
+        return [
+            'email' => 'required|email',
+            'password' => 'required',
+        ];
+    }
+
+    public function mount()
+    {
+        if ($this->demo) {
+            $this->email = 'demo@demo.com';
+            $this->password = 'password';
+        }
+    }
 
     public function login()
     {

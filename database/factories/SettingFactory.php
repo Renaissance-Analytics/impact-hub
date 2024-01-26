@@ -21,6 +21,9 @@ class SettingFactory extends Factory
         return [
             'key' => $this->faker->unique()->word,
             'value' => null,
+            'group' => 'app',
+            'type' => 'string|max:255',
+            'tooltip' => null,
         ];
     }
 }

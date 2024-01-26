@@ -8,11 +8,11 @@
     
     <x-form wire:submit.prevent="login">
 
-        <x-input label="Email" wire:model.lazy="email" type="email" />
-        <x-input label="Password" wire:model.lazy="password" type="password" />
+        <x-input label="Email" wire:model.lazy="email" type="email"  />
+        <x-input label="Password" wire:model.lazy="password" type="password"  />
         <x-checkbox label="Remember me" wire:model.lazy="remember" />
     @if (session('error'))
-        <div class="mb-4 font-medium text-sm text-red-600">
+        <div class="mb-4 text-sm font-medium text-red-600">
             {{ session('error') }}
         </div>
     @endif

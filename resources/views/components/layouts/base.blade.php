@@ -25,8 +25,8 @@
    {{$slot}}
 
         <footer class="bg-gray-800">
-            <div class="container mx-auto px-6 py-3 flex justify-between items-center">
-                <a href="#" class="text-xl font-bold text-white hover:text-gray-200">{{ env('APP_NAME') }}</a>
+            <div class="container flex items-center justify-between px-6 py-3 mx-auto">
+                <a href="#" class="text-xl font-bold text-white hover:text-gray-200">{{ $settings->appName }}</a>
                 <p class="py-2 text-white sm:py-0">All rights reserved</p>
             </div>
         </footer>

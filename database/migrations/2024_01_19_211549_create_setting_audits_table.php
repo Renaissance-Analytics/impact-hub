@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('settings_audits', function (Blueprint $table) {
+        Schema::create('setting_audits', function (Blueprint $table) {
             $table->ulid('id')->primary();
             $table->string('key')->index();
             $table->string('value')->nullable();
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('settings_audits');
+        Schema::dropIfExists('setting_audits');
     }
 };

@@ -23,8 +23,8 @@ class DatabaseSeeder extends Seeder
 
         $user = \App\Models\User::factory()->create([
             'name' => 'Admin',
-            'email' => 'test@example.com',
-            'password' => bcrypt('L1234567!'),
+            'email' => 'demo@demo.com',
+            'password' => bcrypt('password'),
             'role' => 'supmin',
             'email_verified_at' => now(),
         ]);
@@ -52,23 +52,86 @@ class DatabaseSeeder extends Seeder
         ]);
 
          //Add default settings
-         $settings = ['app_name' => 'ImpactHub',
-            'description' => 'Gamification for social impact',
-            'allow_registration' => false,
-            'brand_name' => 'ImpactHub',
-            'full_logo' => 'cms/settings/full_logo.png',
-            'icon_logo' => 'cms/settings/icon_logo.png',
-            'favicon' => 'cms/settings/favicon.png',
-            'primary_color' => '#000000',
-            'secondary_color' => '#000000',
-            'tertiary_color' => '#000000'];
-        foreach ($settings as $key => $value) {
-            \App\Models\Setting::withoutEvents(function () use ($key, $value) {
-                \App\Models\Setting::query()->create([
-                    'key' => $key,
-                    'value' => $value,
-                ]);
-            });
+         $settings = [
+            [
+                'group' => 'app',
+                'key' => 'app_name',
+                'value' => 'ImpactHub',
+                'type' => 'string|max:255',
+                'tooltip' => 'The name of the application.'
+            ],
+            [
+                'group' => 'app',
+                'key' => 'description',
+                'value' => 'Gamification for social impact',
+                'type' => 'string|max:255',
+                'tooltip' => 'A short description of the application.'
+            ],
+            [
+                'group' => 'app',
+                'key' => 'allow_registration',
+                'value' => '0', // false as a string since the value column is a string type
+                'type' => 'boolean',
+                'tooltip' => 'Whether to allow new user registrations.'
+            ],
+            [
+                'group' => 'branding',
+                'key' => 'brand_name',
+                'value' => 'ImpactHub',
+                'type' => 'string|max:255',
+                'tooltip' => 'The brand name of the application.'
+            ],
+            [
+                'group' => 'branding',
+                'key' => 'full_logo',
+                'value' => 'cms/settings/full_logo.png',
+                'type' => 'image|max:2048|dimensions:max_width=200,max_height=100|extensions:png,jpg,jpeg',
+                'tooltip' => 'Upload the full logo image(Max: 200x100|png,jpg,jpeg).'
+            ],
+            [
+                'group' => 'branding',
+                'key' => 'icon_logo',
+                'value' => 'cms/settings/icon_logo.png',
+                'type' => 'image|max:2048|dimensions:max_width=100,max_height=100|extensions:png,jpg,jpeg',
+                'tooltip' => 'Upload the site icon(Max: 100x100|png,jpg,jpeg).'
+            ],
+            [
+                'group' => 'branding',
+                'key' => 'favicon',
+                'value' => 'cms/settings/favicon.png',
+                'type' => 'file|max:100|extensions:gif,ico',
+                'tooltip' => 'Upload the site Favicon(Max: 32x32|gif,ico).'
+            ],
+            [
+                'group' => 'theme',
+                'key' => 'primary_color',
+                'value' => '#000000',
+                'type' => 'hex_color',
+                'tooltip' => 'The primary color of the theme.'
+            ],
+            [
+                'group' => 'theme',
+                'key' => 'secondary_color',
+                'value' => '#000000',
+                'type' => 'hex_color',
+                'tooltip' => 'The secondary color of the theme.'
+            ],
+            [
+                'group' => 'theme',
+                'key' => 'tertiary_color',
+                'value' => '#000000',
+                'type' => 'hex_color',
+                'tooltip' => 'The tertiary color of the theme.'
+            ]
+        ];
+        foreach ($settings as $setting) {
+            \App\Models\Setting::create([
+                'group' => $setting['group'],
+                'key' => $setting['key'],
+                'value' => $setting['value'],
+                'type' => $setting['type'],
+                'tooltip' => $setting['tooltip'],
+            ]);
         }
     }
 }
