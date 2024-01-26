@@ -9,20 +9,21 @@ namespace App\Livewire\Cms\Admin\Pages;
 use Livewire\Component;
 use Illuminate\Support\Facades\File;
 
-use App\Models\Section;
+use App\Models\CmsSection;
 use App\Models\CmsPage;
 
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Mary\Traits\Toast;
 use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\Storage;
 
 #[Layout('components.layouts.x')]
 #[Title('Sections')]
 class SEdit extends Component
 {
     use Toast, WithFileUploads;
-    public ?Section $section;
+    public ?CmsSection $section;
 
     public ?CmsPage $page;
 
@@ -98,7 +99,7 @@ class SEdit extends Component
         ];
     }
 
-    public function mount(?Section $section, CmsPage $page)
+    public function mount(?CmsSection $section, CmsPage $page)
     {
         //Get CMS Layouts
         $this->layouts = collect(File::files(resource_path('views/livewire/cms/sections')))
@@ -133,7 +134,7 @@ class SEdit extends Component
             $this->editing = true;
             
         }else{
-            $this->section = new Section();
+            $this->section = new CmsSection();
             $this->editing = false;
         }
 
@@ -201,7 +202,8 @@ class SEdit extends Component
 
         $validatedData = $this->validate();
         if($this->image && $this->imageUpdated){
-            $validatedData['image'] = $this->image->store('section-images', 'public');
+            $validatedData['image'] = $this->image->store('cms', 'public');
+            Storage::disk('public')->delete($this->previewImageUrl);
         }
 
         if($this->section->id){
@@ -216,7 +218,7 @@ class SEdit extends Component
             $this->saved = true;
             
         }else{
-            Section::create($validatedData);
+            CmsSection::create($validatedData);
             $this->success('New Section Saved!');
             $this->saved = true;    
         }

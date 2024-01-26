@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 //use Illuminate\Database\Eloquent\Concerns\HasUlids;
 
-class Section extends Model
+class CmsSection extends Model
 {
     use HasFactory;
 
@@ -44,7 +44,7 @@ class Section extends Model
 
     public function getUrlSafeCtaLinkAttribute()
     {
-        $section = Section::where('id', $this->cta_link)->first();
+        $section = CmsSection::where('id', $this->cta_link)->first();
         return $section ? strtolower(str_replace(' ', '-', trim($section->name))) : null;
     }
 
@@ -57,6 +57,6 @@ class Section extends Model
 
     public function linkedSection(): BelongsTo
     {
-        return $this->belongsTo(Section::class, 'cta_link');
+        return $this->belongsTo(CmsSection::class, 'cta_link');
     }
 }

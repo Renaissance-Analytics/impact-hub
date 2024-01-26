@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('sections', function (Blueprint $table) {
+        Schema::table('cms_sections', function (Blueprint $table) {
             //Add a status field to the sections table
             $table->string('status')->default('draft');
 
@@ -23,7 +23,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('sections', function (Blueprint $table) {
+        Schema::table('cms_sections', function (Blueprint $table) {
             //Remove the status field from the sections table
             $table->dropColumn('status');
         });

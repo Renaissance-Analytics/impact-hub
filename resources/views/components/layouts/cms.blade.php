@@ -2,9 +2,9 @@
 
     
         
-    <x-main full-width>
+    {{-- <x-main full-width>
      
-        <x-slot:content>
+        <x-slot:content class="sm:px-5"> --}}
             @if($page->sections->isEmpty())
                 <div class="hero min-h-screen">
                     <div class="hero-content text-center">
@@ -21,7 +21,7 @@
                     @livewire('cms.sections.' . $section->layout, ['section' => $section])
                 @endforeach
             @endif
-        </x-slot:content>
-    </x-main>
+        {{-- </x-slot:content>
+    </x-main> --}}
     
 </x-layouts.base>

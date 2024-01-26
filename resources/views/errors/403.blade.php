@@ -3,7 +3,7 @@
 
 @section('code', '403')
 @section('message', 'Forbidden')
-<x-layouts.uc:403>
+<x-layouts.uc :type="403">
 
         <div>
             <h1 class="mb-5 text-5xl font-bold">

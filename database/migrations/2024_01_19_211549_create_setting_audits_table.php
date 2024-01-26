@@ -15,7 +15,7 @@ return new class extends Migration
             $table->ulid('id')->primary();
             $table->string('key')->index();
             $table->string('value')->nullable();
-            $table->string('user_id')->nullable();
+            $table->foreignUlid('user_id')->nullable()->constrained('users');
         });
     }
 

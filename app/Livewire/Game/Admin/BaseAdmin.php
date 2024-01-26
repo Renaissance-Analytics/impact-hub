@@ -7,12 +7,12 @@ use Livewire\Component;
 
 class BaseAdmin extends Component
 {
-    public function mount()
-    {
-        $this->layout = 'layouts.x';
-    }
+    // public function mount()
+    // {
+    //     $this->layout = 'layouts.x';
+    // }
 
-    #[Layout('components.layouts.x')]
+    //#[Layout('components.layouts.x')]
     public function render()
     {
        

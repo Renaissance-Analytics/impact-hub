@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('sections', function (Blueprint $table) {
+        Schema::table('cms_sections', function (Blueprint $table) {
             //
-            $table->foreignUlid('pageOne_id')->nullable()->constrained('cms_pages')->onDelete('set null');
+            $table->foreignUlid('page_one_id')->nullable()->constrained('cms_pages')->onDelete('set null');
             $table->string('page_one_blurb')->nullable();
             $table->string('page_one_image')->nullable();
             $table->string('page_one_color')->nullable();
@@ -34,7 +34,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('sections', function (Blueprint $table) {
+        Schema::table('cms_sections', function (Blueprint $table) {
             //
             $table->dropColumn('page_one_id');
             $table->dropColumn('page_one_blurb');

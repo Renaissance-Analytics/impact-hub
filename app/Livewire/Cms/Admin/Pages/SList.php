@@ -4,7 +4,7 @@ namespace App\Livewire\Cms\Admin\Pages;
 
 use Livewire\Component;
 use App\Models\CmsPage;
-use App\Models\Section;
+use App\Models\CmsSection;
 
 use Livewire\Attributes\Layout;
 #[Layout('components.layouts.x')]

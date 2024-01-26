@@ -10,7 +10,8 @@
                 <x-button label="Dashboard" class="join-item" icon="mdi.monitor-dashboard" link="/x" />
                 <x-button label="Game Manager" class="join-item" icon="mdi.gamepad-outline" link="/x/game" />
                 <x-button label="Users" icon="mdi.account-group" class="join-item" link="/x/users" />
-                <x-button label="Content" icon="mdi.book-edit" class="join-item" link="/x/cms" />
+                <x-button label="CMS" icon="mdi.book-edit" class="join-item" link="/x/cms" />
+                <x-button label="Settings" icon="mdi.cog" class="join-item" link="/x/settings" />
                 <x-dropdown>
                     <x-slot:trigger>
                         <x-button icon="mdi.account-circle" class="join-item" />

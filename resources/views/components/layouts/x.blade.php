@@ -46,12 +46,6 @@
                 {{ $slot }}
             </x-slot:content>
 
-            {{-- Footer area --}}
-            <x-slot:footer fixed>
-                <hr />
-                <div class="p-6 text-center">
-                    The Impact Hub
-                </div>
-            </x-slot:footer>
+           
         </x-main>
 </x-layouts.base>

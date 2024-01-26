@@ -21,7 +21,11 @@ class LogIn extends Component
         $credentials = ['email' => $this->email, 'password' => $this->password];
 
         if (Auth::attempt($credentials, $this->remember)) {
-            return redirect()->to('/game');
+            if (Auth::user()->isAdmin()) {
+                return redirect()->to('/x');
+            } else {
+                return redirect()->to('/game');
+            }
         }
 
         session()->flash('error', 'Invalid credentials');

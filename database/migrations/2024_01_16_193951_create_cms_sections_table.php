@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('sections', function (Blueprint $table) {
+        Schema::create('cms_sections', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
             $table->softDeletes();
@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('title')->nullable();
             $table->text('content')->nullable();
             $table->string('cta_text')->nullable();
-            $table->foreignId('cta_link')->nullable()->references('id')->on('sections')->onDelete('set null');
+            $table->foreignId('cta_link')->nullable()->references('id')->on('cms_sections')->onDelete('set null');
             $table->string('bgcolor')->nullable();
         });
     }
@@ -33,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('sections');
+        Schema::dropIfExists('cms_sections');
     }
 };

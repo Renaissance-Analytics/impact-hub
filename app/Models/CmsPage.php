@@ -5,7 +5,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Section;
+use App\Models\CmsSection;
 use App\Models\User;
 
 
@@ -51,7 +51,7 @@ class CmsPage extends Model
 
     public function sections()
     {
-        return $this->hasMany(Section::class);
+        return $this->hasMany(CmsSection::class);
     }
 
     public function author(): BelongsTo
