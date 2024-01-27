@@ -203,7 +203,7 @@ class SEdit extends Component
         $validatedData = $this->validate();
         if($this->image && $this->imageUpdated){
             $validatedData['image'] = $this->image->store('cms', 'public');
-            Storage::disk('public')->delete($this->previewImageUrl);
+            
         }
 
         if($this->section->id){

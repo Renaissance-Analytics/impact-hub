@@ -59,5 +59,10 @@ Route::middleware([
     })->name('x');
 });
 
+Route::get('/favicon.ico', function () {
+    $favicon = \App\Models\Setting::where('key', 'favicon')->first();
+    $faviconPath = $favicon ? asset('storage/'.$favicon->value) : '/favicon.ico';
+    return redirect($faviconPath);
+});
 //CMS Wildcard Route
 Route::get('/{slug}', [App\Http\Controllers\CmsPageController::class, 'show'])->name('pages.show');

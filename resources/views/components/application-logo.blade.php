@@ -1,4 +1,6 @@
-<div class="hidden-when-collapsed ml-5 font-black text-4xl text-yellow-500">ImpactHub</div>
-<div class="display-when-collapsed ml-5 font-black text-4xl text-orange-500">
-    <x-icon name="mdi.hub" class="w-8 h-8" />
+<div class="ml-5 text-4xl display-when-collapsed">
+    <img src="{{ asset('storage/'.$settings->iconLogo) }}" alt="{{ $settings->brandName }}" class="w-auto max-h-16">
 </div>
+<div class="hidden-when-collapsed ml-3 text-4xl text-[{{ $settings->primaryColor }}]"><img src="{{ asset('storage/'.$settings->fullLogo) }}" alt="{{ $settings->brandName }}" class="w-auto max-h-16" /></div>
+
+

@@ -47,7 +47,6 @@ class Setting extends Model
         $snakeKey = strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', $key));
 
         // If the setting exists in the cache, return a SettingValue instance
-        // If the setting exists in the cache, return a SettingValue instance
         if (isset(static::$cache[$snakeKey])) {
             return new SettingValue(static::$cache[$snakeKey]->value);
         }
