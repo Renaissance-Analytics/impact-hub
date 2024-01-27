@@ -52,81 +52,89 @@ class DatabaseSeeder extends Seeder
         ]);
 
          //Add default settings
-         $settings = [
+         $settings2set = [
             [
-                'group' => 'app',
+                'setting_group' => 'app',
                 'key' => 'app_name',
                 'value' => 'ImpactHub',
                 'type' => 'string|max:255',
                 'tooltip' => 'The name of the application.'
             ],
             [
-                'group' => 'app',
+                'setting_group' => 'app',
                 'key' => 'description',
                 'value' => 'Gamification for social impact',
                 'type' => 'string|max:255',
                 'tooltip' => 'A short description of the application.'
             ],
             [
-                'group' => 'app',
+                'setting_group' => 'app',
                 'key' => 'allow_registration',
-                'value' => '0', // false as a string since the value column is a string type
+                'value' => false, // false as a string since the value column is a string type
                 'type' => 'boolean',
                 'tooltip' => 'Whether to allow new user registrations.'
             ],
+            
             [
-                'group' => 'branding',
+                'setting_group' => 'branding',
                 'key' => 'brand_name',
                 'value' => 'ImpactHub',
                 'type' => 'string|max:255',
                 'tooltip' => 'The brand name of the application.'
             ],
             [
-                'group' => 'branding',
+                'setting_group' => 'branding',
                 'key' => 'full_logo',
                 'value' => 'cms/settings/full_logo.png',
                 'type' => 'image|max:2048|dimensions:max_width=200,max_height=100|extensions:png,jpg,jpeg',
                 'tooltip' => 'Upload the full logo image(Max: 200x100|png,jpg,jpeg).'
             ],
             [
-                'group' => 'branding',
+                'setting_group' => 'branding',
                 'key' => 'icon_logo',
                 'value' => 'cms/settings/icon_logo.png',
                 'type' => 'image|max:2048|dimensions:max_width=100,max_height=100|extensions:png,jpg,jpeg',
                 'tooltip' => 'Upload the site icon(Max: 100x100|png,jpg,jpeg).'
             ],
             [
-                'group' => 'branding',
+                'setting_group' => 'branding',
                 'key' => 'favicon',
-                'value' => 'cms/settings/favicon.png',
+                'value' => 'cms/settings/favicon.ico',
                 'type' => 'file|max:100|extensions:gif,ico',
                 'tooltip' => 'Upload the site Favicon(Max: 32x32|gif,ico).'
             ],
             [
-                'group' => 'theme',
+                'setting_group' => 'branding',
+                'key' => 'use_icon_logo',
+                'value' => false, // true as a string since the value column is a string type
+                'type' => 'boolean',
+                'tooltip' => 'Whether to use the full logo or the icon logo.'
+            ],
+            [
+                'setting_group' => 'theme',
                 'key' => 'primary_color',
                 'value' => '#000000',
                 'type' => 'hex_color',
                 'tooltip' => 'The primary color of the theme.'
             ],
             [
-                'group' => 'theme',
+                'setting_group' => 'theme',
                 'key' => 'secondary_color',
                 'value' => '#000000',
                 'type' => 'hex_color',
                 'tooltip' => 'The secondary color of the theme.'
             ],
             [
-                'group' => 'theme',
+                'setting_group' => 'theme',
                 'key' => 'tertiary_color',
                 'value' => '#000000',
                 'type' => 'hex_color',
                 'tooltip' => 'The tertiary color of the theme.'
             ]
         ];
-        foreach ($settings as $setting) {
+        foreach ($settings2set as $setting) {
             \App\Models\Setting::create([
-                'group' => $setting['group'],
+                'setting_group' => $setting['setting_group'],
                 'key' => $setting['key'],
                 'value' => $setting['value'],
                 'type' => $setting['type'],

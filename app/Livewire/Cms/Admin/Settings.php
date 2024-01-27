@@ -71,7 +71,7 @@ class Settings extends Component
             $ftype = $this->getType($setting->type);
             switch (true) {
                 case $ftype === 'boolean':
-                    $setting->value = (bool) $setting->value;
+                    $setting->value = boolval($setting->value);
                     break;
                 
                 case $ftype === 'array':

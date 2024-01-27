@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('settings', function (Blueprint $table) {
             $table->ulid('id')->primary();
-            $table->string('group')->default('app')->nullable();
+            $table->string('setting_group')->default('app')->nullable();
             $table->string('key')->unique()->index();
             $table->string('value')->nullable();
             $table->string('type')->default('string|max:255')->nullable();

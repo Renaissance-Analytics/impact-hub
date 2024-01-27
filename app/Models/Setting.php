@@ -105,6 +105,7 @@ class Setting extends Model
                 'value' => $settings->value,
                 'user_id' => $userId,
             ]);
+            Cache::forget('settings.' . $settings->key);
         });
     }
 
