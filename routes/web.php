@@ -14,8 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    $firstPage = App\Models\CmsPage::orderBy('id')->first();
-    return (new App\Http\Controllers\CmsPageController)->show($firstPage->slug);
+    $homePageSlug = App\Models\Setting::where('key', 'home_page')->first()->value;
+    $homePage = App\Models\CmsPage::find($homePageSlug);
+    return (new App\Http\Controllers\CmsPageController)->show($homePage->slug);
 })->name('home');
 
 Route::get('/login', \App\Livewire\Account\LogIn::class)->name('login');
