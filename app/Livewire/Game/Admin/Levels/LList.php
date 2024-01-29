@@ -8,7 +8,7 @@ use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Mary\Traits\Toast;
 
-#[Layout('components.layouts.x')]
+#[Layout('layouts.x')]
 #[Title('Levels')]
 class LList extends Component
 {

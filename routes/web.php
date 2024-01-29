@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+require __DIR__.'/jetstream.php';
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,9 +17,6 @@ Route::get('/', function () {
     $firstPage = App\Models\CmsPage::orderBy('id')->first();
     return (new App\Http\Controllers\CmsPageController)->show($firstPage->slug);
 })->name('home');
-
-Route::get('/login', \App\Livewire\Account\LogIn::class)->name('login');
-Route::get('/register', \App\Livewire\Account\Register::class)->name('register');
 
 
 Route::group(['prefix' => 'x', 'middleware' => 'isAdmin'], function () {
@@ -43,21 +40,21 @@ Route::group(['prefix' => 'game'], function () {
     Route::get('/giver', \App\Livewire\Game\Quest\Giver::class)->name('game.giver');
     Route::get('/profile', \App\Livewire\Game\User\Me\Profile::class)->name('game.profile');
     Route::get('/log', \App\Livewire\Game\Quest\Log::class)->name('game.log');
-    
+
     //Guild stuff coming in v3
     // Route::get('/my-guild', \App\Livewire\Game\Guild\MyGuild::class)->name('game.my-guild');
     // Route::get('/guild-list', \App\Livewire\Game\Guild\GuildList::class)->name('game.guild-list');
 });
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified',
-])->group(function () {
-    Route::get('/x', function () {
-        return view('dashboard');
-    })->name('x');
-});
+//Route::middleware([
+//    'auth:sanctum',
+//    config('jetstream.auth_session'),
+//    'verified',
+//])->group(function () {
+//    Route::get('/x', function () {
+//        return view('dashboard');
+//    })->name('x');
+//});
 
 Route::get('/favicon.ico', function () {
     $favicon = \App\Models\Setting::where('key', 'favicon')->first();
@@ -66,3 +63,5 @@ Route::get('/favicon.ico', function () {
 });
 //CMS Wildcard Route
 Route::get('/{slug}', [App\Http\Controllers\CmsPageController::class, 'show'])->name('pages.show');
+
+

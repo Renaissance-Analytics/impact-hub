@@ -7,7 +7,7 @@ use App\Models\CmsPage;
 use App\Models\CmsSection;
 
 use Livewire\Attributes\Layout;
-#[Layout('components.layouts.x')]
+#[Layout('layouts.x')]
 class SList extends Component
 {
     public ?CmsPage $page;

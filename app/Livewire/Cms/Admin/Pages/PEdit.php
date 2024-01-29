@@ -12,7 +12,7 @@ use Livewire\Attributes\Title;
 use Mary\Traits\Toast;
 
 // Setting layout and title for the component
-#[Layout('components.layouts.x')]
+#[Layout('layouts.x')]
 #[Title('Pages')]
 class PEdit extends Component
 {
@@ -32,7 +32,7 @@ class PEdit extends Component
 
     public function rules()
     {
-    
+
 
         return [
             'title' => 'required|string|max:255',
@@ -71,7 +71,7 @@ class PEdit extends Component
         $this->showDrawer = true;
     }
 
-    
+
 
     // Function to save the page
     public function save()
@@ -90,8 +90,8 @@ class PEdit extends Component
         }
     }
 
-   
-    
+
+
 
     // Render function to display the view
     public function render()

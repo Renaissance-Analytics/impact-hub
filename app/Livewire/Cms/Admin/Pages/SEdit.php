@@ -18,7 +18,7 @@ use Mary\Traits\Toast;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
 
-#[Layout('components.layouts.x')]
+#[Layout('layouts.x')]
 #[Title('Sections')]
 class SEdit extends Component
 {
@@ -30,7 +30,7 @@ class SEdit extends Component
     public $editing = false;
     public $imageUpdated = false;
     public $saved = false;
-    
+
     public $name;
     public $layout;
     public $cms_page_id;
@@ -56,7 +56,7 @@ class SEdit extends Component
     public $page_two_color;
     public $page_two_cta_icon;
     public $page_two_cta_text;
-    
+
 
     public $returnUrl;
 
@@ -112,7 +112,7 @@ class SEdit extends Component
         $this->cta_links = $page->sections->map(function ($ctasection) use ($section) {
             if ($ctasection->id !== $section->id) {
                 return [
-                    'id' => $ctasection->id, 
+                    'id' => $ctasection->id,
                     'name' => $ctasection->name,
                 ];
             }
@@ -125,14 +125,14 @@ class SEdit extends Component
         $this->page = $page->loadCount('sections');
         $this->returnUrl = '/x/cms/'.$page->id;
 
-       
-        
+
+
         if($section->id){
             $this->previewImageUrl = $section->id ? asset('storage/'.$section->image) : null;
             $this->section = $section;
             //$this->image = $section->image;
             $this->editing = true;
-            
+
         }else{
             $this->section = new CmsSection();
             $this->editing = false;
@@ -144,16 +144,16 @@ class SEdit extends Component
         if($this->layout == 'choice'){
             $this->choicesContent = json_decode($this->section->content);
         }else{
-            
+
         }
-        
+
         if(!$section->id){
             $this->cms_page_id = $page->id;
             $this->order = $page->sections_count + 1;
         }else{
             $this->cms_page_id = $this->section->cms_page_id;
             $this->order = $this->section->order;
-            
+
         }
         $this->bgcolor = $this->section->bgcolor;
         $this->cta_link = $this->section->cta_link;
@@ -185,7 +185,7 @@ class SEdit extends Component
         $this->imageUpdated = true;
     }
 
-    
+
 
     public function delete()
     {
@@ -203,24 +203,24 @@ class SEdit extends Component
         $validatedData = $this->validate();
         if($this->image && $this->imageUpdated){
             $validatedData['image'] = $this->image->store('cms', 'public');
-            
+
         }
 
         if($this->section->id){
             if($this->section->update($validatedData)){
                 $this->success('Section Updated!');
                 $this->saved = true;
-                
+
             }else{
                 $this->error('Error updating section!');
             }
             $this->success('Section Saved!');
             $this->saved = true;
-            
+
         }else{
             CmsSection::create($validatedData);
             $this->success('New Section Saved!');
-            $this->saved = true;    
+            $this->saved = true;
         }
 
     }
@@ -230,7 +230,7 @@ class SEdit extends Component
         return view('livewire.cms.admin.pages.s-edit');
     }
 
-    
+
 
     public function updating($name, $value)
     {

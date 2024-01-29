@@ -1,11 +1,11 @@
-<x-layouts.base :title="$title" :admin="true">
+<x-base-layout :title="$title" :admin="true">
 
-    
+
 
     {{-- The main content with `full-width` --}}
         <x-main full-width>
             @if(Request::is('/x/game/*'))
-                <x-slot:sidebar drawer="main-drawer" collapsable class="bg-base-100 lg:bg-inherit">
+                <x-slot.sidebar drawer="main-drawer" collapsable class="bg-base-100 lg:bg-inherit">
                     <x-menu>
                     <x-menu-sub  title="Levels">
                         <x-menu-item link="/x/game/levels/" icon="mdi.view-list">List</x-menu-item>
@@ -36,7 +36,7 @@
                         <x-menu-item link="/x/game/settings/create" icon="mdi.plus">Create</x-menu-item>
                     </x-menu-sub>
                     </x-menu>
-                </x-slot:sidebar>
+                </x-slot.sidebar>
             @endif
 
 
@@ -46,6 +46,6 @@
                 {{ $slot }}
             </x-slot:content>
 
-           
+
         </x-main>
-</x-layouts.base>
+</x-base-layout>

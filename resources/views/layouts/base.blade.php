@@ -12,7 +12,7 @@
 
         <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
         @vite(['resources/css/app.css', 'resources/js/app.js'])
-
+        @livewireStyles
     </head>
    <body class="min-h-screen font-sans antialiased">
         @if($admin ?? false)
@@ -24,7 +24,7 @@
         @endif
    {{$slot}}
 
-        <footer class="bg-gray-800">
+        <footer class="bg-gray-100 dark:bg-gray-800">
             <div class="container flex items-center justify-between px-6 py-3 mx-auto">
                 <a href="#" class="text-xl font-bold text-white hover:text-gray-200">{{ $settings->appName }}</a>
                 <p class="py-2 text-white sm:py-0">All rights reserved</p>
@@ -32,5 +32,6 @@
         </footer>
         <x-toast />
         <x-pbs />
+        @livewireScripts
     </body>
 </html>

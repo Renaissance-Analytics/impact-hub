@@ -1,9 +1,9 @@
-<x-layouts.base :title="$page->title ?? ''" :description="$page->description ?? ''" :keywords="$page->keywords ?? ''">
+<x-base-layout :title="$page->title ?? ''" :description="$page->description ?? ''" :keywords="$page->keywords ?? ''">
 
-    
-        
+
+
     {{-- <x-main full-width>
-     
+
         <x-slot:content class="sm:px-5"> --}}
             @if($page->sections->isEmpty())
                 <div class="hero min-h-screen">
@@ -14,7 +14,7 @@
                                 </div>
                         </div>
                     </div>
-               
+
                 </div>
             @else
                 @foreach($page->sections as $section)
@@ -23,5 +23,5 @@
             @endif
         {{-- </x-slot:content>
     </x-main> --}}
-    
-</x-layouts.base>
+
+</x-base-layout>

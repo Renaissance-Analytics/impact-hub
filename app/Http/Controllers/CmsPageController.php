@@ -9,11 +9,11 @@ class CmsPageController extends Controller
 {
     public function show($slug)
     {
-        
+
         $page = CmsPage::where('slug', $slug)->with('sections')->firstOrFail();
 
-        
 
-        return view('components.layouts.cms', compact('page'));
+
+        return view('layouts.cms', compact('page'));
     }
 }

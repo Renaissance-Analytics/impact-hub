@@ -5,7 +5,7 @@ namespace App\View\Components;
 use Illuminate\View\Component;
 use Illuminate\View\View;
 
-class AppLayout extends Component
+class GameLayout extends Component
 {
     public mixed $title;
 
@@ -13,9 +13,8 @@ class AppLayout extends Component
     {
         $this->title = $title;
     }
-
     public function render(): View
     {
-        return view('layouts.app', ['title' => $this->title]);
+        return view('layouts.game', ['title' => $this->title]);
     }
 }

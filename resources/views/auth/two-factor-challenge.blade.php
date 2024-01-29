@@ -30,8 +30,8 @@
 
                 <div class="flex items-center justify-end mt-4">
                     <button type="button" class="text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 underline cursor-pointer"
-                                    x-show="! recovery"
-                                    x-on:click="
+                            x-show="! recovery"
+                            x-on:click="
                                         recovery = true;
                                         $nextTick(() => { $refs.recovery_code.focus() })
                                     ">
@@ -39,9 +39,9 @@
                     </button>
 
                     <button type="button" class="text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 underline cursor-pointer"
-                                    x-cloak
-                                    x-show="recovery"
-                                    x-on:click="
+                            x-cloak
+                            x-show="recovery"
+                            x-on:click="
                                         recovery = false;
                                         $nextTick(() => { $refs.code.focus() })
                                     ">
