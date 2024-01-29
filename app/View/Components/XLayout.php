@@ -12,6 +12,7 @@ class XLayout extends Component
      */
     public function render(): View
     {
+       //dd('x');
         return view('components.layouts.x');
     }
 }

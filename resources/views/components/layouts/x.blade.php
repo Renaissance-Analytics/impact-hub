@@ -1,10 +1,13 @@
 <x-layouts.base :title="$title" :admin="true">
 
     
-
+@php
+    $currentUrl = url()->current();
+    $isGame = $currentUrl == url('/x/game') || Str::startsWith($currentUrl, url('/x/game/'));
+ @endphp
     {{-- The main content with `full-width` --}}
         <x-main full-width>
-            @if(Request::is('/x/game/*'))
+            @if($isGame)
                 <x-slot:sidebar drawer="main-drawer" collapsable class="bg-base-100 lg:bg-inherit">
                     <x-menu>
                     <x-menu-sub  title="Levels">
