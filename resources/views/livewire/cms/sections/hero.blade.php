@@ -1,6 +1,6 @@
-<div id="{{ $section->url_safe_name }}" class="hero min-h-screen" style="background-image: url('{{ asset('storage/'.$section->image) }}');">
+<div id="{{ $section->url_safe_name }}" class="min-h-screen bg-left hero sm:bg-center" style="background-image: url('{{ asset('storage/'.$section->image) }}');">
   
-  <div class="hero-content text-center text-white">
+  <div class="text-center text-white hero-content">
     <div class="max-w-md">
       
       <h1 class="mb-5 text-5xl font-bold" >{{ $section->title }}</h1>

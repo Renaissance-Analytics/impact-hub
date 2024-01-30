@@ -19,6 +19,9 @@ class Settings extends Component
     use Toast;
     use WithFileUploads;
 
+    public $showAddSettingModal = false;
+    public $newSetting = [];
+
     public $appSettings;
     public $allSettings;
 
@@ -93,6 +96,27 @@ class Settings extends Component
             $this->allSettings[$setting->key] = $setting;
         });
         
+    }
+
+    public function addNewSetting()
+    {
+        // Validate the new setting data
+        $this->validate([
+            'newSetting.setting_group' => 'required',
+            'newSetting.key' => 'required',
+            'newSetting.value' => 'required',
+            'newSetting.type' => 'required',
+            'newSetting.tooltip' => 'required',
+        ]);
+
+        // Add the new setting to your settings store
+        // This will depend on how you're storing your settings
+
+        //TODO: Add the new setting to the database (copy Updating code)
+
+        // Reset the form and close the modal
+        $this->newSetting = [];
+        $this->showAddSettingModal = false;
     }
 
     private function getType($type)

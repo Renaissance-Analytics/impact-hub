@@ -1,6 +1,10 @@
 <div class="container">
     {{-- Nothing in the world is as soft and yielding as water. --}}
-    <x-header title="App Settings" subtitle="Each setting will save when you tab out of that setting field except file uploads. File uploads will save when you click the checkmark" separator />
+    <x-header title="App Settings" subtitle="Each setting will save when you tab out of that setting field except file uploads. File uploads will save when you click the checkmark" separator>
+        <x-slot name="actions">
+            <x-button icon="mdi.plus" wire:click="$toggle('showAddSettingModal')" class="btn-primary">Add Setting</x-button>
+        </x-slot>
+    </x-header>
     <x-tabs selected="app">
         {{-- Loop through groups and setup tabs --}}
         @foreach($formGroups as $group => $fields)
@@ -115,26 +119,25 @@
         </x-tab>
         @endforeach
     </x-tabs>
+<!-- Add New Setting Modal -->
+<x-modal wire:model="showAddSettingModal">
+    <x-slot name="title">
+        Add New Setting
+    </x-slot>
 
-        {{-- <x-header title="Basic" subtitle="App Settings" separator />
-        
-            <x-input label="App Name" wire:model.defer="settingsForm.app_name" maxlength="12" wire:blur="updateSetting('app_name')" wire:dirty.class="border-yellow-500" />
-            <x-textarea label="Description" wire:model.defer="settingsForm.description" rows="4" wire:blur="updateSetting('description')" wire:dirty.class="border-yellow-500" />
-            <x-toggle label="Allow Registration" wire:model.defer="settingsForm.allow_registration" wire:blur="updateSetting('allow_registration')" wire:dirty.class="border-yellow-500" />
-            
-        
+    <x-slot name="content">
+        <form wire:submit.prevent="addNewSetting">
+            <x-input label="Group" wire:model="newSetting.setting_group" />
+            <x-input label="Key" wire:model="newSetting.key" />
+            <x-input label="Default Value" wire:model="newSetting.value" />
+            <x-input label="Type" wire:model="newSetting.type" />
+            <x-input label="Tooltip" wire:model="newSetting.tooltip" />
+            <!-- Add more fields as necessary -->
+        </form>
+    </x-slot>
 
-        
-        <x-header title="Brand" subtitle="Brand Settings" separator class="mt-8" />
-        
-            <x-input label="Brand Name" wire:model.defer="settingsForm.brand_name" wire:blur="updateSetting('brand_name')" maxlength="12" wire:dirty.class="border-yellow-500"  />
-            <x-file label="Full Logo" wire:model.defer="settingsForm.full_logo" accept="image/png, image/jpeg" wire:blur="updateSetting('full_logo')" wire:dirty.class="border-yellow-500" />
-            <x-file label="Icon Logo" wire:model.defer="settingsForm.icon_logo" accept="image/png, image/jpeg" wire:blur="updateSetting('icon_logo')" wire:dirty.class="border-yellow-500" />
-            <x-file label="FavIcon" wire:model.defer="settingsForm.favicon" accept="image/png, image/jpeg" wire:blur="updateSetting('favicon')" wire:dirty.class="border-yellow-500" />
-            <x-input label="Tagline" wire:model.defer="settingsForm.tagline"  maxlength="255" wire:blur="updateSetting('tagline')" wire:dirty.class="border-yellow-500"  />
-            <div class="grid grid-cols-3 gap-4">
-                <x-input label="Primary Color" wire:model.defer="settingsForm.primary_color" type="color" wire:blur="updateSetting('primary_color')" wire:dirty.class="border-yellow-500"  />
-                <x-input label="Secondary Color" wire:model.defer="settingsForm.secondary_color" type="color" wire:blur="updateSetting('secondary_color')" wire:dirty.class="border-yellow-500"  />
-                <x-input label="Tertiary Color" wire:model.defer="settingsForm.tertiary_color" type="color" wire:blur="updateSetting('tertiary_color')" wire:dirty.class="border-yellow-500"  />
-            </div> --}}
+    <x-slot name="footer">
+        <x-button wire:click="addNewSetting" class="bg-green-500">Add Setting</x-button>
+    </x-slot>
+</x-modal>
 </div>
