@@ -3,8 +3,10 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Traits\HasReferrals;
 use Illuminate\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
@@ -26,6 +28,7 @@ class User extends Authenticatable
     use GiveExperience;
     use HasAchievements;
     use MustVerifyEmail;
+    use HasReferrals;
 
     /**
      * The attributes that are mass assignable.
@@ -74,43 +77,17 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
-    protected static function boot()
-    {
-        parent::boot();
-
-        static::creating(function ($user) {
-            $user->referral_code = self::generateUniqueReferralCode();
-        });
-    }
-
-    public function isAdmin()
+    public function isAdmin(): bool
     {
 
         return ($this->role === 'admin' || $this->role === 'supmin');
     }
 
-    protected static function generateUniqueReferralCode($length = 6)
-    {
-        do {
-            $code = self::generateReferralCode($length);
-        } while (!self::isReferralCodeUnique($code));
 
-        return $code;
-    }
-
-    protected static function generateReferralCode($length = 6)
-    {
-        $characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ-.~_';
-        $charactersLength = strlen($characters);
-        $randomString = '';
-        for ($i = 0; $i < $length; $i++) {
-            $randomString .= $characters[rand(0, $charactersLength - 1)];
-        }
-        return $randomString;
-    }
-
-    protected static function isReferralCodeUnique($code)
-    {
-        return !static::where('referral_code', $code)->exists();
-    }
+    /**
+     * REFERRAL CODE LOGIC:
+     * The trait HasReferrals provides methods for managing a user's referral code. We no longer need your methods for managing the referral code in the User model.
+     * You can find the trait in app/Models/Traits/HasReferrals.php or at the end of this file in the use HasReferrals;
+     * We do not need the referral code to be in the users table as we now handle this in the referral_codes table.
+     */
 }

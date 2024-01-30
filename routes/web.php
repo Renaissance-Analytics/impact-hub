@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ReferralController;
 use Illuminate\Support\Facades\Route;
 require __DIR__.'/jetstream.php';
 /*
@@ -17,6 +18,9 @@ Route::get('/', function () {
     $firstPage = App\Models\CmsPage::orderBy('id')->first();
     return (new App\Http\Controllers\CmsPageController)->show($firstPage->slug);
 })->name('home');
+
+Route::get('/referral/{referralCode:code}', [ReferralController::class, 'index'])->name('referral.index');
+Route::post('/referral/{referralCode:code}', [ReferralController::class, 'store'])->name('referral.store');
 
 
 Route::group(['prefix' => 'x', 'middleware' => 'isAdmin'], function () {
