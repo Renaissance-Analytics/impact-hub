@@ -38,14 +38,22 @@
                     </span>
                 </div>
 
-                <x-secondary-button class="mt-2 me-2" type="button" x-on:click.prevent="$refs.photo.click()">
+                <!-- TEMP Fix for the secondary button -->
+                <button type="button" x-on:click.prevent="$refs.photo.click()" class="mt-2 me-2 inline-flex items-center px-4 py-2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-500 rounded-md font-semibold text-xs text-gray-700 dark:text-gray-300 uppercase tracking-widest shadow-sm hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 disabled:opacity-25 transition ease-in-out duration-150">
                     {{ __('Select A New Photo') }}
-                </x-secondary-button>
+                </button>
+{{--                <x-secondary-button class="mt-2 me-2" type="button" x-on:click.prevent="$refs.photo.click()">--}}
+{{--                    {{ __('Select A New Photo') }}--}}
+{{--                </x-secondary-button>--}}
 
                 @if ($this->user->profile_photo_path)
-                    <x-secondary-button type="button" class="mt-2" wire:click="deleteProfilePhoto">
+                    <!-- TEMP Fix for the secondary button -->
+                    <button type="button" wire:click="deleteProfilePhoto" class="mt-2 inline-flex items-center px-4 py-2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-500 rounded-md font-semibold text-xs text-gray-700 dark:text-gray-300 uppercase tracking-widest shadow-sm hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 disabled:opacity-25 transition ease-in-out duration-150">
                         {{ __('Remove Photo') }}
-                    </x-secondary-button>
+                    </button>
+{{--                    <x-secondary-button type="button" class="mt-2" wire:click="deleteProfilePhoto">--}}
+{{--                        {{ __('Remove Photo') }}--}}
+{{--                    </x-secondary-button>--}}
                 @endif
 
                 <x-input-error for="photo" class="mt-2" />
@@ -88,8 +96,12 @@
             {{ __('Saved.') }}
         </x-action-message>
 
-        <x-button wire:loading.attr="disabled" wire:target="photo">
+        <!-- TEMP Fix for the button -->
+        <button type="submit" wire:loading.attr="disabled" wire:target="photo" class="ms-4 inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
             {{ __('Save') }}
-        </x-button>
+        </button>
+{{--        <x-button wire:loading.attr="disabled" wire:target="photo">--}}
+{{--            {{ __('Save') }}--}}
+{{--        </x-button>--}}
     </x-slot>
 </x-form-section>
