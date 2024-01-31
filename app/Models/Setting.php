@@ -36,31 +36,23 @@ class Setting extends Model
      */
     public function __get($key)
     {
-        // If the cache is null, load all settings into it
-        if (static::$cache === null) {
-            static::$cache = Cache::remember('settings', 60, function () {
-                return self::all()->keyBy('key');
-            });
-        }
-
         // Convert camelCase to snake_case
         $snakeKey = strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', $key));
 
-        // If the setting exists in the cache, return a SettingValue instance
-        if (isset(static::$cache[$snakeKey])) {
-            return new SettingValue(static::$cache[$snakeKey]->value);
+        // Try to get the setting from the cache
+        $setting = Cache::get('settings.' . $snakeKey);
+
+        if (!$setting) {
+            // If the setting is not in the cache, load it from the database
+            $setting = self::where('key', $snakeKey)->first();
+
+            if ($setting) {
+                // Store the setting in the cache
+                Cache::put('settings.' . $snakeKey, $setting, 60);
+            }
         }
 
-        // If the setting does not exist in the cache, attempt to load it from the database
-        $setting = self::where('key', $snakeKey)->first();
-        if ($setting) {
-            // Add the setting to the cache
-            static::$cache[$snakeKey] = $setting;
-            return new SettingValue($setting->value);
-        }
-
-        // If the setting does not exist, call the parent's __get method
-        return parent::__get($key);
+        return $setting ? new SettingValue($setting->value) : parent::__get($key);
     }
 
     /**

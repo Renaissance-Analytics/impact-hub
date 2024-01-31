@@ -17,8 +17,9 @@ use Illuminate\Support\Facades\Route;
 require __DIR__.'/jetstream.php';
 
 Route::get('/', function () {
-    $firstPage = App\Models\CmsPage::orderBy('id')->first();
-    return (new App\Http\Controllers\CmsPageController)->show($firstPage->slug);
+    $homePageSlug = App\Models\Setting::where('key', 'home_page')->first()->value;
+    $homePage = App\Models\CmsPage::find($homePageSlug);
+    return (new App\Http\Controllers\CmsPageController)->show($homePage->slug);
 })->name('home');
 
 // This controls the referral system

@@ -18,8 +18,8 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
-       
-        
+
+
 
         $user = \App\Models\User::factory()->create([
             'name' => 'Admin',
@@ -28,11 +28,11 @@ class DatabaseSeeder extends Seeder
             'role' => 'supmin',
             'email_verified_at' => now(),
         ]);
-        
+
         //Create default page and content
         $page = \App\Models\CmsPage::factory()->create([
             'title' => 'ImpactHub',
-            'slug' => 'home',
+            'slug' => 'impact-hub',
             'description' => 'Help make an impact by joining our quest',
             'author' => $user->id,
             'keywords' => 'impact, gamification, crowd funding, crowd sourcing, social impact, impact hub',
@@ -51,8 +51,8 @@ class DatabaseSeeder extends Seeder
             'image'=>'cms/fi58igZUXyvSjlcbanBgCMxVmVLU9dOUiG7cCPVU.png',
         ]);
 
-         //Add default settings
-         $settings2set = [
+        //Add default settings
+        $settings2set = [
             [
                 'setting_group' => 'app',
                 'key' => 'app_name',
@@ -74,7 +74,14 @@ class DatabaseSeeder extends Seeder
                 'type' => 'boolean',
                 'tooltip' => 'Whether to allow new user registrations.'
             ],
-            
+            [
+                'setting_group' => 'app',
+                'key' => 'home_page',
+                'value' => $page->id, // false as a string since the value column is a string type
+                'type' => 'select|obj|cms_page:id:title',
+                'tooltip' => 'The page to use as the home page.'
+            ],
+
             [
                 'setting_group' => 'branding',
                 'key' => 'brand_name',
@@ -105,9 +112,16 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'setting_group' => 'branding',
-                'key' => 'use_icon_logo',
-                'value' => false, // true as a string since the value column is a string type
+                'key' => 'show_icon',
+                'value' => false, // false as a string since the value column is a string type
                 'type' => 'boolean',
+                'tooltip' => 'Whether to show the site icon in the header.'
+            ],
+            [
+                'setting_group' => 'branding',
+                'key' => 'brand_display',
+                'value' => 'full_logo', // true as a string since the value column is a string type
+                'type' => 'select|opt|full_logo:Full Logo,brand_name:Brand Name',
                 'tooltip' => 'Whether to use the full logo or the icon logo.'
             ],
             [
