@@ -15,6 +15,7 @@ class XLayout extends Component
     }
     public function render(): View
     {
+        //dd('x');
         return view('layouts.x', ['title' => $this->title]);
     }
 }
