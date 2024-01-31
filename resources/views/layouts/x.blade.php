@@ -5,7 +5,7 @@
         $currentUrl = url()->current();
         $isGame = $currentUrl == url('/x/game') || Str::startsWith($currentUrl, url('/x/game/'));
     @endphp
-    {{-- The main content with `full-width` --}}
+    {{-- The main content with `full-width`  --}}
     <x-main full-width>
         @if($isGame)
             <x-slot:sidebar drawer="main-drawer" collapsable class="bg-base-100 lg:bg-inherit">
