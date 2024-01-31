@@ -7,15 +7,12 @@ use Illuminate\View\View;
 
 class XLayout extends Component
 {
-    public mixed $title;
-
-    public function __construct($title = null)
-    {
-        $this->title = $title;
-    }
+    /**
+     * Get the view / contents that represents the component.
+     */
     public function render(): View
     {
-        //dd('x');
-        return view('layouts.x', ['title' => $this->title]);
+       //dd('x');
+        return view('components.layouts.x');
     }
 }

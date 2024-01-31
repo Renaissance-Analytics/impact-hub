@@ -35,25 +35,25 @@ class Setting extends Model
      * @return mixed
      */
     public function __get($key)
-    {
-        // Convert camelCase to snake_case
-        $snakeKey = strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', $key));
+{
+    // Convert camelCase to snake_case
+    $snakeKey = strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', $key));
 
-        // Try to get the setting from the cache
-        $setting = Cache::get('settings.' . $snakeKey);
+    // Try to get the setting from the cache
+    $setting = Cache::get('settings.' . $snakeKey);
 
-        if (!$setting) {
-            // If the setting is not in the cache, load it from the database
-            $setting = self::where('key', $snakeKey)->first();
+    if (!$setting) {
+        // If the setting is not in the cache, load it from the database
+        $setting = self::where('key', $snakeKey)->first();
 
-            if ($setting) {
-                // Store the setting in the cache
-                Cache::put('settings.' . $snakeKey, $setting, 60);
-            }
+        if ($setting) {
+            // Store the setting in the cache
+            Cache::put('settings.' . $snakeKey, $setting, 60);
         }
-
-        return $setting ? new SettingValue($setting->value) : parent::__get($key);
     }
+
+    return $setting ? new SettingValue($setting->value) : parent::__get($key);
+}
 
     /**
      * Magic method to set settings by key.

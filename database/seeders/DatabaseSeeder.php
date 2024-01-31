@@ -18,8 +18,8 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
-
-
+       
+        
 
         $user = \App\Models\User::factory()->create([
             'name' => 'Admin',
@@ -28,7 +28,7 @@ class DatabaseSeeder extends Seeder
             'role' => 'supmin',
             'email_verified_at' => now(),
         ]);
-
+        
         //Create default page and content
         $page = \App\Models\CmsPage::factory()->create([
             'title' => 'ImpactHub',
@@ -51,8 +51,8 @@ class DatabaseSeeder extends Seeder
             'image'=>'cms/fi58igZUXyvSjlcbanBgCMxVmVLU9dOUiG7cCPVU.png',
         ]);
 
-        //Add default settings
-        $settings2set = [
+         //Add default settings
+         $settings2set = [
             [
                 'setting_group' => 'app',
                 'key' => 'app_name',
@@ -81,7 +81,7 @@ class DatabaseSeeder extends Seeder
                 'type' => 'select|obj|cms_page:id:title',
                 'tooltip' => 'The page to use as the home page.'
             ],
-
+            
             [
                 'setting_group' => 'branding',
                 'key' => 'brand_name',

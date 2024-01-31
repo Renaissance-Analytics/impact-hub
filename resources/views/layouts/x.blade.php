@@ -1,15 +1,15 @@
-<x-base-layout :title="$title" :admin="true">
+<x-layouts.base :title="$title" :admin="true">
 
-
-    @php
-        $currentUrl = url()->current();
-        $isGame = $currentUrl == url('/x/game') || Str::startsWith($currentUrl, url('/x/game/'));
-    @endphp
+    
+@php
+    $currentUrl = url()->current();
+    $isGame = $currentUrl == url('/x/game') || Str::startsWith($currentUrl, url('/x/game/'));
+ @endphp
     {{-- The main content with `full-width` --}}
-    <x-main full-width>
-        @if($isGame)
-            <x-slot:sidebar drawer="main-drawer" collapsable class="bg-base-100 lg:bg-inherit">
-                <x-menu>
+        <x-main full-width>
+            @if($isGame)
+                <x-slot:sidebar drawer="main-drawer" collapsable class="bg-base-100 lg:bg-inherit">
+                    <x-menu>
                     <x-menu-sub  title="Levels">
                         <x-menu-item link="/x/game/levels/" icon="mdi.view-list">List</x-menu-item>
                         <x-menu-item link="/x/game/levels/create" icon="mdi.plus">Create</x-menu-item>
@@ -38,17 +38,17 @@
                         <x-menu-item link="/x/game/settings/" icon="mdi.view-list">List</x-menu-item>
                         <x-menu-item link="/x/game/settings/create" icon="mdi.plus">Create</x-menu-item>
                     </x-menu-sub>
-                </x-menu>
-            </x-slot:sidebar>
-        @endif
+                    </x-menu>
+                </x-slot:sidebar>
+            @endif
 
 
 
-        {{-- The `$slot` goes here --}}
-        <x-slot:content>
-            {{ $slot }}
-        </x-slot:content>
+            {{-- The `$slot` goes here --}}
+            <x-slot:content>
+                {{ $slot }}
+            </x-slot:content>
 
-
-    </x-main>
-</x-base-layout>
+           
+        </x-main>
+</x-layouts.base>
