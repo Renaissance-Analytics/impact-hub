@@ -25,16 +25,16 @@ Route::group(['middleware' => config('jetstream.middleware', ['web'])], function
         : null;
 
     Route::group(['middleware' => array_values(array_filter([$authMiddleware, $authSessionMiddleware]))], function () {
-        // User & Profile...
+        // User & Profile... Keep this! Jetstream default is user/profile. We changed it to account.
         Route::get('/account', [UserProfileController::class, 'show'])->name('profile.show');
 
         Route::group(['middleware' => 'verified'], function () {
-            // API...
+            // API... You can remove this if you don't want to use API support.
             if (Jetstream::hasApiFeatures()) {
                 Route::get('/user/api-tokens', [ApiTokenController::class, 'index'])->name('api-tokens.index');
             }
 
-            // Teams...
+            // Teams... You can remove this if you don't want to use teams.
             if (Jetstream::hasTeamFeatures()) {
                 Route::get('/teams/create', [TeamController::class, 'create'])->name('teams.create');
                 Route::get('/teams/{team}', [TeamController::class, 'show'])->name('teams.show');
