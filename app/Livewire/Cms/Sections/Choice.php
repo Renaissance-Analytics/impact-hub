@@ -9,7 +9,7 @@ use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Mary\Traits\Toast;
 
-#[Layout('components.layouts.uc')]
+#[Layout('layouts.uc')]
 #[Title('Choice')]
 class Choice extends Component
 {

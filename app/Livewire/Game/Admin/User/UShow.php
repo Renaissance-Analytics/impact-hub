@@ -20,7 +20,7 @@ class UShow extends Component
 
     //#[Modelable]
     public ?User $user = null;
-    
+
     // #[Modelable]
     // public $editing_key;
 
@@ -40,8 +40,8 @@ class UShow extends Component
     //#[Modelable]
     //public $showUser = false;
 
-    
-    
+
+
 
     protected array $rules = [
         'name' => 'required|string|max:255',
@@ -66,7 +66,7 @@ class UShow extends Component
         if($user->id) {
             $this->user = $user;
         } else {
-            $this->user = new User; 
+            $this->user = new User;
         }
         $this->name = $this->user->name;
         $this->display_name = $this->user->display_name;
@@ -77,9 +77,9 @@ class UShow extends Component
         $this->company_name = $this->user->company_name;
         $this->password = null;
 
-        
+
     }
-    
+
 
     public function save()
     {
@@ -104,7 +104,7 @@ class UShow extends Component
     }
 
 
-    #[Layout('components.layouts.x')]
+    #[Layout('layouts.x')]
     public function render()
     {
         if($this->user->id) {

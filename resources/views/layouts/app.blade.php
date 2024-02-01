@@ -1,8 +1,8 @@
-<x-layouts.base :title="$title">
+<x-base-layout :title="$title">
         <x-banner />
 
         <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
-            @livewire('navigation-menu')
+{{--            @livewire('navigation-menu')--}}
 
             <!-- Page Heading -->
             @if (isset($header))
@@ -20,4 +20,4 @@
         </div>
 
         @stack('modals')
-</x-layouts.base>
+</x-base-layout>

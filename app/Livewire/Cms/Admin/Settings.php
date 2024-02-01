@@ -11,7 +11,7 @@ use Livewire\Attributes\Title;
 use Mary\Traits\Toast;
 use Livewire\WithFileUploads;
 
-#[Layout('components.layouts.x')]
+#[Layout('layouts.x')]
 #[Title('Settings')]
 class Settings extends Component
 {
@@ -65,18 +65,18 @@ class Settings extends Component
     {
         // Load all settings from the database
         $this->appSettings = new Setting();
-       
+
 
         // Set the default values for the settings
         $this->appSettings->each(function ($setting) {
-            
+
             //get field type
             $ftype = $this->getType($setting->type);
             switch (true) {
                 case $ftype === 'boolean':
                     $setting->value = boolval($setting->value);
                     break;
-                
+
                 case $ftype === 'array':
                     $setting->value = json_decode($setting->value);
                     break;
@@ -95,7 +95,7 @@ class Settings extends Component
             $this->formGroups[$setting->setting_group][] = $setting->key;
             $this->allSettings[$setting->key] = $setting;
         });
-        
+
     }
 
     public function addNewSetting()
@@ -132,7 +132,7 @@ class Settings extends Component
 
     public function updateSetting($key)
     {
-        
+
         $setting = Setting::where('key', $key)->first();
         if ($setting) {
             //$this->validate('settingsForm.' . $key, $setting->type);
@@ -183,7 +183,7 @@ class Settings extends Component
             $this->previews[$key]['path'] = $value->temporaryUrl();
         }
     }
-    
+
     public function render()
     {
         return view('livewire.cms.admin.settings');

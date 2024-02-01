@@ -16,9 +16,9 @@ use Livewire\Attributes\Title;
 class UList extends Component
 {
     use WithPagination, Toast;
-    
 
-    #[Layout('components.layouts.x')]
+
+    #[Layout('layouts.x')]
     public function render()
     {
         //dd(User::paginate(10));

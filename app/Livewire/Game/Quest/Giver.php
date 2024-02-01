@@ -6,7 +6,7 @@ use Livewire\Component;
 
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
-#[Layout('components.layouts.uc')]
+#[Layout('layouts.uc')]
 #[Title('Quest Giver')]
 class Giver extends Component
 {

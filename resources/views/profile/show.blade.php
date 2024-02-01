@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-game-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
             {{ __('Profile') }}
@@ -10,6 +10,11 @@
             @if (Laravel\Fortify\Features::canUpdateProfileInformation())
                 @livewire('profile.update-profile-information-form')
 
+                <x-section-border />
+            @endif
+
+            @if(auth()->user()->referralsEnabled())
+                @include('profile.user-referral-code')
                 <x-section-border />
             @endif
 
@@ -42,4 +47,4 @@
             @endif
         </div>
     </div>
-</x-app-layout>
+</x-game-layout>

@@ -12,10 +12,10 @@ class BaseAdmin extends Component
     //     $this->layout = 'layouts.x';
     // }
 
-    //#[Layout('components.layouts.x')]
+    //#[Layout('layouts.x')]
     public function render()
     {
-       
+
     }
 
 }

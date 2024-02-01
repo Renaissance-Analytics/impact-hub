@@ -3,7 +3,7 @@
             <x-slot:brand class="flex items-center gap-2">
                 <x-application-logo  />
             </x-slot:brand>
-            
+
             <x-slot:actions>
             
                 <div class="hidden md:block">

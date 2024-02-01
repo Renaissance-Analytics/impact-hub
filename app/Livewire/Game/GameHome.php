@@ -7,7 +7,7 @@ use Livewire\Component;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 
-#[Layout('components.layouts.game')]
+#[Layout('layouts.game')]
 #[Title('Home & Hearth')]
 class GameHome extends Component
 {

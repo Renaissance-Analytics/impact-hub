@@ -7,11 +7,15 @@ use Illuminate\View\View;
 
 class AppLayout extends Component
 {
-    /**
-     * Get the view / contents that represents the component.
-     */
+    public mixed $title;
+
+    public function __construct($title = null)
+    {
+        $this->title = $title;
+    }
+
     public function render(): View
     {
-        return view('layouts.app');
+        return view('layouts.app', ['title' => $this->title]);
     }
 }

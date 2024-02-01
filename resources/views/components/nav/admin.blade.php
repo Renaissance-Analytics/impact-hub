@@ -17,7 +17,13 @@
                         <x-button icon="mdi.account-circle" class="join-item" />
                     </x-slot:trigger>
                     <x-menu-item title="Account" icon="mdi.account-cog" link="/account" />
-                    <x-menu-item title="Log Out" icon="mdi.logout" link="/logout" />
+                    <form method="POST" action="{{ route('logout') }}" id="logout-form" x-data>
+                        @csrf
+                        <!-- Mary UI Menu Item -->
+                        <x-menu-item title="{{ __('Log Out') }}" icon="mdi.logout"
+                                     @click.prevent="$root.submit();">
+                        </x-menu-item>
+                    </form>
                 </x-dropdown>
                 </div>
             </x-slot:actions>

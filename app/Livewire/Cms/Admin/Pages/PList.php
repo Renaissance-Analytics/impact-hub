@@ -11,16 +11,16 @@ use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Mary\Traits\Toast;
 
-#[Layout('components.layouts.x')]
+#[Layout('layouts.x')]
 #[Title('Pages')]
 class PList extends Component
 {
     use Toast;
 
-    
+
     public function render()
     {
-        
+
         return view('livewire.cms.admin.pages.p-list');
     }
 
