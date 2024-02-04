@@ -2,7 +2,7 @@
     {{-- Nothing in the world is as soft and yielding as water. --}}
     <x-header title="App Settings" subtitle="Each setting will save when you tab out of that setting field except file uploads. File uploads will save when you click the checkmark" separator>
         <x-slot name="actions">
-            <x-button icon="mdi.plus" wire:click="$toggle('showAddSettingModal')" class="btn-primary">Add Setting</x-button>
+            <x-button icon="mdi.plus" wire:click="openSettingModal" class="btn-primary">Add Setting</x-button>
         </x-slot>
     </x-header>
     <x-tabs selected="app">
@@ -125,19 +125,19 @@
         Add New Setting
     </x-slot>
 
-    <x-slot name="content">
-        <form wire:submit.prevent="addNewSetting">
+    
+        <form wire:submit.prevent="addNewSetting" class="grid grid-cols-1 gap-2 md:gap-4 md:grid-cols-2">
             <x-input label="Group" wire:model="newSetting.setting_group" />
             <x-input label="Key" wire:model="newSetting.key" />
-            <x-input label="Default Value" wire:model="newSetting.value" />
             <x-input label="Type" wire:model="newSetting.type" />
             <x-input label="Tooltip" wire:model="newSetting.tooltip" />
+            <x-input label="Default Value" wire:model="newSetting.value" />
             <!-- Add more fields as necessary -->
         </form>
-    </x-slot>
+    
 
-    <x-slot name="footer">
+    <x-slot:actions>
         <x-button wire:click="addNewSetting" class="bg-green-500">Add Setting</x-button>
-    </x-slot>
+    </x-slot:actions>
 </x-modal>
 </div>

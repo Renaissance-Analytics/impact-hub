@@ -6,10 +6,10 @@
 
         <x-slot:content class="sm:px-5"> --}}
             @if($page->sections->isEmpty())
-                <div class="hero min-h-screen">
-                    <div class="hero-content text-center">
+                <div class="min-h-screen hero">
+                    <div class="text-center hero-content">
                         <div class="max-w-md">
-                            <div class="text-center py-5">
+                            <div class="py-5 text-center">
                                     <h2 class="text-lg font-semibold text-gray-600">Coming Soon...</h2>
                                 </div>
                         </div>

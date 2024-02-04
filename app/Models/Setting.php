@@ -35,25 +35,23 @@ class Setting extends Model
      * @return mixed
      */
     public function __get($key)
-{
-    // Convert camelCase to snake_case
-    $snakeKey = strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', $key));
+    {
+        // Convert camelCase to snake_case
+        $snakeKey = strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', $key));
 
-    // Try to get the setting from the cache
-    $setting = Cache::get('settings.' . $snakeKey);
+        // Try to get the setting from the cache
+        $setting = Cache::remember('settings.' . $snakeKey, 60, function () use ($snakeKey) {
+            return self::where('key', $snakeKey)->first();
+        });
 
-    if (!$setting) {
-        // If the setting is not in the cache, load it from the database
-        $setting = self::where('key', $snakeKey)->first();
-
-        if ($setting) {
-            // Store the setting in the cache
-            Cache::put('settings.' . $snakeKey, $setting, 60);
+        if (!$setting) {
+            // If the setting does not exist, defer to the parent method
+            return parent::__get($key);
         }
-    }
 
-    return $setting ? new SettingValue($setting->value) : parent::__get($key);
-}
+        // Return the Setting model instance directly
+        return $setting;
+    }
 
     /**
      * Magic method to set settings by key.
@@ -91,13 +89,15 @@ class Setting extends Model
     protected static function booted()
     {
         static::saved(function ($settings) {
-            $userId = auth()->id() ?? \App\Models\User::where('role', 'supmin')->first()->id;
-            \App\Models\SettingAudit::create([
-                'key' => $settings->key,
-                'value' => $settings->value,
-                'user_id' => $userId,
-            ]);
-            Cache::forget('settings.' . $settings->key);
+            if (auth()->check() && auth()->user()->isAdmin) {
+                $userId = auth()->id();
+                \App\Models\SettingAudit::create([
+                    'key' => $settings->key,
+                    'value' => $settings->value,
+                    'user_id' => $userId,
+                ]);
+                Cache::forget('settings.' . $settings->key);
+            }
         });
     }
 

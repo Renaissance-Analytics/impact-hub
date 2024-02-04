@@ -97,7 +97,17 @@ class Settings extends Component
         });
 
     }
-
+    public function openSettingModal()
+    {
+        $this->newSetting = [
+            'setting_group' => '',
+            'key' => '',
+            'value' => '',
+            'type' => '',
+            'tooltip' => '',
+        ];
+        $this->showAddSettingModal = true;
+    }
     public function addNewSetting()
     {
         // Validate the new setting data
@@ -117,6 +127,7 @@ class Settings extends Component
         // Reset the form and close the modal
         $this->newSetting = [];
         $this->showAddSettingModal = false;
+        $this->success('Setting added successfully.');
     }
 
     private function getType($type)

@@ -11,7 +11,7 @@ class SettingValue
         $this->value = $value;
     }
 
-    public function __toString()
+    public function getValue()
     {
         return $this->value;
     }

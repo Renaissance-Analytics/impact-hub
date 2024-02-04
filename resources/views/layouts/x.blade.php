@@ -1,4 +1,4 @@
-<x-base-layout :title="$title" :admin="true">
+<x-base-layout :title="$title">
 
 
     @php

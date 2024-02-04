@@ -15,6 +15,10 @@
         @livewireStyles
     </head>
    <body class="min-h-screen font-sans antialiased">
+    @php
+        $currentUrl = url()->current();
+        $admin = $currentUrl == (url('/x') || Str::startsWith($currentUrl, url('/x/'))) && auth()->check() && auth()->user()->isAdmin();
+    @endphp
         @if($admin ?? false)
             <x-nav.admin />
         @elseif(auth()->check())
@@ -26,7 +30,7 @@
 
         <footer class="bg-gray-100 dark:bg-gray-800">
             <div class="container flex items-center justify-between px-6 py-3 mx-auto">
-                <a href="#" class="text-xl font-bold text-white hover:text-gray-200">{{ $settings->appName }}</a>
+                <a href="#" class="text-xl font-bold text-white hover:text-gray-200">{{ $settings->appName->value }}</a>
                 <p class="py-2 text-white sm:py-0">All rights reserved</p>
             </div>
         </footer>
