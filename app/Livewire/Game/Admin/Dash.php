@@ -8,15 +8,15 @@ use App\Livewire\Game\Admin\BaseAdmin;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 
-#[Layout('layouts.x')]
+#[Layout('layouts.admin')]
 #[Title('Dashboard')]
-class XDash extends BaseAdmin
+class Dash extends BaseAdmin
 {
 
 
 
     public function render()
     {
-        return view('livewire.game.admin.x-dash');
+        return view('livewire.game.admin.dash');
     }
 }

@@ -10,7 +10,7 @@ class ReferralCode extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'code', 'visits', 'clicks'];
+    protected $fillable = ['user_id', 'code', 'visits', 'clicks', 'more'];
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);

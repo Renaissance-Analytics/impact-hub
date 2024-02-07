@@ -12,7 +12,7 @@ use Livewire\Attributes\Title;
 use Mary\Traits\Toast;
 
 // Setting layout and title for the component
-#[Layout('layouts.x')]
+#[Layout('layouts.admin')]
 #[Title('Pages')]
 class PEdit extends Component
 {
@@ -86,7 +86,7 @@ class PEdit extends Component
             $newPage = CmsPage::create($validatedData);
             $this->showDrawer = false;
             $this->success('Page Created');
-            $this->redirect('/x/cms/' . $newPage->id);
+            $this->redirect('/admin/cms/' . $newPage->id);
         }
     }
 

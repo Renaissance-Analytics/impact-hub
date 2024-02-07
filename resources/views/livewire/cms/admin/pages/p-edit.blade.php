@@ -1,3 +1,4 @@
+<x-admin-layout>
 @php
     if($page->id){
         $formTitle = 'Edit ' . $page->title;
@@ -36,4 +37,5 @@
         </div>
     @endif
 </div>
- 
+</x-admin-layout>
+

@@ -4,11 +4,12 @@ namespace App\Livewire\Game\Admin\Levels;
 
 use Livewire\Component;
 
+
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Mary\Traits\Toast;
 
-//#[Layout('components.layouts.x')]
+#[Layout('layouts.admin')]
 #[Title('Levels')]
 class LList extends Component
 {

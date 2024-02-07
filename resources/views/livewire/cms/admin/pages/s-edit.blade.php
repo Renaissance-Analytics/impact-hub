@@ -1,4 +1,4 @@
-<div>
+<x-admin-layout>
 @php
 
     $cardTitle = $editing ? 'Editing ' : 'Creating ';
@@ -88,5 +88,5 @@
         </x-card>
     </div>
     
-</div>
-</div>
+</x-admin-layout>
+

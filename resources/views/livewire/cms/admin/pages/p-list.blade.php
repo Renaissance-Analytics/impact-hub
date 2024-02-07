@@ -1,3 +1,4 @@
+<x-admin-layout>
 @php
     $pages = App\Models\CmsPage::with('author')->paginate(10);
     //dd($pages);
@@ -49,3 +50,5 @@
     </x-table>
     
 </div>
+</x-admin-layout>
+

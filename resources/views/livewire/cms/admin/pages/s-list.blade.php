@@ -1,3 +1,4 @@
+<x-admin-layout>
 @php
     $headers = [
         ['key' => 'name', 'label' => 'Section Name'],
@@ -16,7 +17,7 @@
     @else
         <x-table :headers="$headers" :rows="$page->sections" link="/x/cms/{{ $page->id}}/s/{id}">
             @scope('header_actions', $header, $page)
-                <span>{{ $header['label'] }}</span><x-button icon="mdi.plus" wire:navigate link="/x/cms/{{{ $page->id }}}/s" class="btn-primary btn-circle btn-sm mx-5" spinner="addSection" />
+                <span>{{ $header['label'] }}</span><x-button icon="mdi.plus" wire:navigate link="/x/cms/{{{ $page->id }}}/s" class="mx-5 btn-primary btn-circle btn-sm" spinner="addSection" />
 
             @endscope
 
@@ -37,3 +38,5 @@
 
     @endif
 </div>
+</x-admin-layout>
+

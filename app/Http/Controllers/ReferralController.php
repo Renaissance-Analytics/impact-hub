@@ -11,7 +11,7 @@ class ReferralController extends Controller
     {
         $referralCode->increment('visits');
 
-        return view('referral.index', [
+        return view('invite.index', [
             'referralCode' => $referralCode
         ]);
     }
@@ -25,5 +25,16 @@ class ReferralController extends Controller
         );
 
         return redirect()->route('register');
+    }
+
+    public function more(ReferralCode $referralCode)
+    {
+        $referralCode->increment('more');
+
+        cookie()->queue(
+            cookie('referral_code', $referralCode->code, now()->addMonth()->diffInMinutes())
+        );
+
+        return redirect()->route('home');
     }
 }

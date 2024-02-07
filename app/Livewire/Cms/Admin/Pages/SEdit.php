@@ -18,7 +18,7 @@ use Mary\Traits\Toast;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
 
-#[Layout('layouts.x')]
+#[Layout('layouts.admin')]
 #[Title('Sections')]
 class SEdit extends Component
 {
@@ -123,7 +123,7 @@ class SEdit extends Component
         })->toArray();
 
         $this->page = $page->loadCount('sections');
-        $this->returnUrl = '/x/cms/'.$page->id;
+        $this->returnUrl = '/admin/cms/'.$page->id;
 
 
 

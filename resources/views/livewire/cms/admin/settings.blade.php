@@ -1,3 +1,4 @@
+
 <div class="container">
     {{-- Nothing in the world is as soft and yielding as water. --}}
     <x-header title="App Settings" subtitle="Each setting will save when you tab out of that setting field except file uploads. File uploads will save when you click the checkmark" separator>
@@ -119,25 +120,25 @@
         </x-tab>
         @endforeach
     </x-tabs>
-<!-- Add New Setting Modal -->
-<x-modal wire:model="showAddSettingModal">
-    <x-slot name="title">
-        Add New Setting
-    </x-slot>
+    <!-- Add New Setting Modal -->
+    <x-modal wire:model="showAddSettingModal">
+        <x-slot name="title">
+            Add New Setting
+        </x-slot>
 
-    
-        <form wire:submit.prevent="addNewSetting" class="grid grid-cols-1 gap-2 md:gap-4 md:grid-cols-2">
-            <x-input label="Group" wire:model="newSetting.setting_group" />
-            <x-input label="Key" wire:model="newSetting.key" />
-            <x-input label="Type" wire:model="newSetting.type" />
-            <x-input label="Tooltip" wire:model="newSetting.tooltip" />
-            <x-input label="Default Value" wire:model="newSetting.value" />
-            <!-- Add more fields as necessary -->
-        </form>
-    
+        
+            <form wire:submit.prevent="addNewSetting" class="grid grid-cols-1 gap-2 md:gap-4 md:grid-cols-2">
+                <x-input label="Group" wire:model="newSetting.setting_group" />
+                <x-input label="Key" wire:model="newSetting.key" />
+                <x-input label="Type" wire:model="newSetting.type" />
+                <x-input label="Tooltip" wire:model="newSetting.tooltip" />
+                <x-input label="Default Value" wire:model="newSetting.value" />
+                <!-- Add more fields as necessary -->
+            </form>
+        
 
-    <x-slot:actions>
-        <x-button wire:click="addNewSetting" class="bg-green-500">Add Setting</x-button>
-    </x-slot:actions>
-</x-modal>
+        <x-slot:actions>
+            <x-button wire:click="addNewSetting" class="bg-green-500">Add Setting</x-button>
+        </x-slot:actions>
+    </x-modal>
 </div>

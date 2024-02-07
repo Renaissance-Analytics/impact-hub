@@ -7,11 +7,10 @@ use Livewire\Component;
 use App\Models\Setting;
 
 use Livewire\Attributes\Layout;
-use Livewire\Attributes\Title;
 use Mary\Traits\Toast;
 use Livewire\WithFileUploads;
 
-#[Layout('layouts.x')]
+#[Layout('layouts.admin')]
 #[Title('Settings')]
 class Settings extends Component
 {

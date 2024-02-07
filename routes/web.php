@@ -23,20 +23,21 @@ Route::get('/', function () {
 })->name('home');
 
 // This controls the referral system
-Route::get('/referral/{referralCode:code}', [ReferralController::class, 'index'])->name('referral.index');
-Route::post('/referral/{referralCode:code}', [ReferralController::class, 'store'])->name('referral.store');
+Route::get('/invite/{referralCode:code}', [ReferralController::class, 'index'])->name('invite.index');
+Route::post('/invite/{referralCode:code}', [ReferralController::class, 'store'])->name('invite.store');
+Route::post('/invite/more', [ReferralController::class, 'more'])->name('invite.more');
 
 
-Route::group(['prefix' => 'x', 'middleware' => 'isAdmin'], function () {
-    Route::get('/', App\Livewire\Game\Admin\XDash::class)->name('x');
-    Route::get('/users', App\Livewire\Game\Admin\User\UList::class)->name('x.users');
+Route::group(['prefix' => 'admin', 'middleware' => 'isAdmin'], function () {
+    Route::get('/', App\Livewire\Game\Admin\Dash::class)->name('admin');
+    Route::get('/users', App\Livewire\Game\Admin\User\UList::class)->name('admin.users');
     Route::get('/users/create', App\Livewire\Game\Admin\User\UShow::class);
     Route::get('/users/{user}/edit', App\Livewire\Game\Admin\User\UShow::class);
-    Route::get('/game', App\Livewire\Game\Admin\GameAdmin::class)->name('x.game');
-    Route::get('/game/levels', App\Livewire\Game\Admin\Levels\LList::class)->name('x.levels');
-    Route::get('/settings', App\Livewire\Cms\Admin\Settings::class)->name('x.settings');
+    Route::get('/game', App\Livewire\Game\Admin\GameAdmin::class)->name('admin.game');
+    Route::get('/game/levels', App\Livewire\Game\Admin\Levels\LList::class)->name('admin.levels');
+    Route::get('/settings', App\Livewire\Cms\Admin\Settings::class)->name('admin.settings');
 
-    Route::get('cms', App\Livewire\Cms\Admin\Pages\PList::class)->name('x.cms.pages');
+    Route::get('cms', App\Livewire\Cms\Admin\Pages\PList::class)->name('admin.cms.pages');
     Route::get('cms/create', App\Livewire\Cms\Admin\Pages\PEdit::class);
     Route::get('cms/{page}', App\Livewire\Cms\Admin\Pages\PEdit::class);
     Route::get('cms/{page}/s', App\Livewire\Cms\Admin\Pages\SEdit::class);
@@ -55,15 +56,15 @@ Route::group(['prefix' => 'game'], function () {
 });
 
 // Not sure if this is needed anymore.
-//Route::middleware([
+// Route::middleware([
 //    'auth:sanctum',
 //    config('jetstream.auth_session'),
 //    'verified',
-//])->group(function () {
-//    Route::get('/x', function () {
+// ])->group(function () {
+//    Route::get('/admin', function () {
 //        return view('dashboard');
-//    })->name('x');
-//});
+//    })->name('admin');
+// });
 
 Route::get('/favicon.ico', function () {
     $favicon = \App\Models\Setting::where('key', 'favicon')->first();

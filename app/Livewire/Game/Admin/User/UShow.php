@@ -8,9 +8,12 @@ use App\Models\User;
 
 
 use Livewire\Attributes\Layout;
+use Livewire\Attributes\Title;
 
 //use Livewire\Attributes\Modelable;
 
+#[Layout('layouts.admin')]
+#[Title('User Form')]
 class UShow extends Component
 {
 
@@ -104,7 +107,6 @@ class UShow extends Component
     }
 
 
-    #[Layout('layouts.x')]
     public function render()
     {
         if($this->user->id) {

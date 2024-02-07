@@ -1,5 +1,5 @@
 <x-guest-layout>
-    <x-authentication-card>
+    <x-authentication-card class="max-w-screen-sm">
         <x-slot name="logo">
             <x-authentication-card-logo />
         </x-slot>
@@ -52,7 +52,7 @@
                         {{ __('Already registered?') }}
                     </a>
 
-                    <x-button class="ms-4">
+                    <x-button type="submit" class="ms-4">
                         {{ __('Register') }}
                     </x-button>
                 </div>

@@ -30,7 +30,7 @@
                         </x-dropdown>
 
                         @if(auth()->check() && auth()->user()->isAdmin())
-                            <x-button label="{{__('Admin')}}" icon="mdi.book-edit" link="/x" class="join-item" />
+                            <x-button label="{{__('Admin')}}" icon="mdi.book-edit" link="/admin" class="join-item" />
                         @endif
                         <x-dropdown seperator>
                             <x-slot:trigger>
@@ -71,7 +71,7 @@
                             </x-dropdown>
 
                             @if(auth()->check() && auth()->user()->isAdmin())
-                                <x-button label="{{__('Admin')}}" icon="mdi.book-edit" link="/x" class="join-item" />
+                                <x-button label="{{__('Admin')}}" icon="mdi.book-edit" link="/admin" class="join-item" />
                             @endif
                             <x-dropdown seperator>
                                 <x-slot:trigger>

@@ -12,13 +12,14 @@ use Mary\Traits\Toast;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 
+#[Layout('layouts.admin')]
 #[Title('Users')]
 class UList extends Component
 {
     use WithPagination, Toast;
 
 
-    #[Layout('layouts.x')]
+
     public function render()
     {
         //dd(User::paginate(10));

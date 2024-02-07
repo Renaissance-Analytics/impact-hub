@@ -5,7 +5,7 @@ namespace App\View\Components;
 use Illuminate\View\Component;
 use Illuminate\View\View;
 
-class XLayout extends Component
+class AdminLayout extends Component
 {
     /**
      * Get the view / contents that represents the component.
@@ -13,6 +13,6 @@ class XLayout extends Component
     public function render(): View
     {
        //dd('x');
-        return view('components.layouts.x');
+        return view('layouts.admin');
     }
 }

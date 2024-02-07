@@ -4,12 +4,11 @@ namespace App\Livewire\Game\Admin;
 
 use Livewire\Component;
 
-
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Mary\Traits\Toast;
 
-#[Layout('layouts.x')]
+#[Layout('layouts.admin')]
 #[Title('Game Admin')]
 class GameAdmin extends Component
 {

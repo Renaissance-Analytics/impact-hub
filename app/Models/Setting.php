@@ -89,7 +89,7 @@ class Setting extends Model
     protected static function booted()
     {
         static::saved(function ($settings) {
-            if (auth()->check() && auth()->user()->isAdmin) {
+            if (auth()->check() && auth()->user()->isAdmin()) {
                 $userId = auth()->id();
                 \App\Models\SettingAudit::create([
                     'key' => $settings->key,

@@ -11,7 +11,7 @@ use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Mary\Traits\Toast;
 
-#[Layout('layouts.x')]
+#[Layout('layouts.admin')]
 #[Title('Pages')]
 class PList extends Component
 {

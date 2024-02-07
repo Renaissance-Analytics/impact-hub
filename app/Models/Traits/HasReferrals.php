@@ -19,7 +19,7 @@ trait HasReferrals
 
     public function referralLink(): string
     {
-        return route('referral.index', $this->referralCode);
+        return route('invite.index', $this->referralCode);
     }
 
     public function referralCode()
