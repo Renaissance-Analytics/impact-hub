@@ -57,14 +57,14 @@ class DatabaseSeeder extends Seeder
                 'setting_group' => 'app',
                 'key' => 'app_name',
                 'value' => 'ImpactHub',
-                'type' => 'string|max:255',
+                'type' => 'string|max:25',
                 'tooltip' => 'The name of the application.'
             ],
             [
                 'setting_group' => 'app',
                 'key' => 'description',
                 'value' => 'Gamification for social impact',
-                'type' => 'string|max:255',
+                'type' => 'string|max:160',
                 'tooltip' => 'A short description of the application.'
             ],
             [
@@ -124,6 +124,14 @@ class DatabaseSeeder extends Seeder
                 'type' => 'select|opt|full_logo:Full Logo,brand_name:Brand Name',
                 'tooltip' => 'Whether to use the full logo or the icon logo.'
             ],
+            [
+                'setting_group' => 'branding',
+                'key' => 'metaimg',
+                'value' => 'cms/fi58igZUXyvSjlcbanBgCMxVmVLU9dOUiG7cCPVU.png',
+                'type' => 'image|max:2048|dimensions:max_width=2400,max_height=100|extensions:png,jpg,jpeg',
+                'tooltip' => 'Upload the default OG Meta image(Max Width: 2400|png,jpg,jpeg).'
+            ],
+            
             [
                 'setting_group' => 'theme',
                 'key' => 'primary_color',

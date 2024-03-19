@@ -1,4 +1,4 @@
-<x-admin-layout>
+
 @php
     $pages = App\Models\CmsPage::with('author')->paginate(10);
     //dd($pages);
@@ -15,9 +15,9 @@
 <div class="flex h-screeen">
     
     
-    <x-table :headers="$headers" :rows="$pages" with-pagination>
+    <x-table :headers="$headers" :rows="$pages" with-pagination  link="/admin/cms/{id}">
         @scope('header_actions', $header)
-            <span>{{ $header['label'] }}</span><x-button icon="mdi.plus" link="/x/cms/create" wire:navigate class="btn-primary btn-circle btn-sm mx-5" />
+            <span>{{ $header['label'] }}</span><x-button icon="mdi.plus" link="/admin/cms/create" wire:navigate class="mx-5 btn-primary btn-circle btn-sm" />
 
         @endscope
 
@@ -39,8 +39,6 @@
        
 
         @scope('cell_actions', $page)
-           
-            <x-button link="/x/cms/{{ $page->id }}" wire:navigate class="btn-ghost" icon="mdi.pencil" spinner />
             {{-- <x-button wire:click="edit('{{ $user->id}}')" class="btn-ghost" icon="mdi.pencil" spinner /> --}}
             @if(auth()->user()->role == 'supmin' && $page->count() > 1)
                 <x-button wire:confirm="Are you sure you want to delete this page?" wire:click="delete('{{ $page->id }}')" icon="mdi.delete" class="btn-error btn-sm" spinner="delete" />
@@ -50,5 +48,5 @@
     </x-table>
     
 </div>
-</x-admin-layout>
+
 

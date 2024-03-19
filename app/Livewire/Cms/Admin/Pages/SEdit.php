@@ -42,7 +42,8 @@ class SEdit extends Component
     public $content;
     public $image;
     public $status;
-    //Support for Page Choise Section Type
+    //Support for Page Choice Section Type
+    //TODO: Modify to support JSON data storage for Section type specific data
     public $page_one_id;
     public $page_one_blurb;
     public $page_one_image;

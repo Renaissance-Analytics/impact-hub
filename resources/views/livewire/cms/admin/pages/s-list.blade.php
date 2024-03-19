@@ -1,4 +1,3 @@
-<x-admin-layout>
 @php
     $headers = [
         ['key' => 'name', 'label' => 'Section Name'],
@@ -12,12 +11,12 @@
 <div class="container">
     @if($page->sections->isEmpty())
         <div class="grid place-items-center h-[calc(100vh-170px)]">
-            <a href="/x/cms/{{ $page->id }}/s" class="btn btn-primary">Add Section</a>
+            <a href="/admin/cms/{{ $page->id }}/s" class="btn btn-primary">Add Section</a>
         </div>
     @else
-        <x-table :headers="$headers" :rows="$page->sections" link="/x/cms/{{ $page->id}}/s/{id}">
+        <x-table :headers="$headers" :rows="$page->sections" link="/admin/cms/{{ $page->id}}/s/{id}">
             @scope('header_actions', $header, $page)
-                <span>{{ $header['label'] }}</span><x-button icon="mdi.plus" wire:navigate link="/x/cms/{{{ $page->id }}}/s" class="mx-5 btn-primary btn-circle btn-sm" spinner="addSection" />
+                <span>{{ $header['label'] }}</span><x-button icon="mdi.plus" wire:navigate link="/admin/cms/{{{ $page->id }}}/s" class="mx-5 btn-primary btn-circle btn-sm" spinner="addSection" />
 
             @endscope
 
@@ -38,5 +37,3 @@
 
     @endif
 </div>
-</x-admin-layout>
-

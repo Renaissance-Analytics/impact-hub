@@ -66,11 +66,12 @@ Route::group(['prefix' => 'game'], function () {
 //    })->name('admin');
 // });
 
-Route::get('/favicon.ico', function () {
-    $favicon = \App\Models\Setting::where('key', 'favicon')->first();
-    $faviconPath = $favicon ? asset('storage/'.$favicon->value) : '/favicon.ico';
-    return redirect($faviconPath);
-});
+// Route::get('/favicon.ico', function () {
+//     $favicon = \App\Models\Setting::where('key', 'favicon')->first();
+//     $faviconPath = $favicon ? asset('storage/'.$favicon->value) : '/favicon.ico';
+    
+//     return response()->file($faviconPath);
+// });
 //CMS Wildcard Route
 Route::get('/{slug}', [App\Http\Controllers\CmsPageController::class, 'show'])->name('pages.show');
 

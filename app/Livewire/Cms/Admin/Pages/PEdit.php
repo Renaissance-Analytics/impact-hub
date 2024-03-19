@@ -28,6 +28,10 @@ class PEdit extends Component
     public $slug;
     public $published;
     public $published_at;
+
+    public $ogimage;
+    public $copywrite;
+
     public $showDrawer = false;
 
     public function rules()
@@ -39,6 +43,7 @@ class PEdit extends Component
             'description' => 'nullable|string',
             'keywords' => 'nullable|string',
             'author' => 'required|string|exists:users,id',
+            'ogimage' => 'nullable|image|max:2048',
             'slug' => 'required|string|max:255|unique:cms_pages,slug,' . ($this->page->id ? $this->page->id : ''),
             'published' => 'nullable|boolean',
         ];
