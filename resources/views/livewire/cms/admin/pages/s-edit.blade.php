@@ -2,17 +2,21 @@
 
     $cardTitle = $editing ? 'Editing ' : 'Creating ';
 @endphp
+@section('head')
+    <link rel="stylesheet" href="https://unpkg.com/easymde/dist/easymde.min.css">
+    <script src="https://unpkg.com/easymde/dist/easymde.min.js"></script>
+@endsection
 
-<div class="hero min-h-screen" style="background-image: url('{{ $previewImageUrl }}');">
+<div class="min-h-screen hero" style="background-image: url('{{ $previewImageUrl }}');">
 <div class="hero-overlay bg-opacity-60"></div>
 
     {{-- Success is as dangerous as failure. --}}
-    <div class="hero-content">
-        <x-card class="w-full" title='{{ $cardTitle.$name }} for {{ $page->title }} Page'>
+    <div class="w-2/3 hero-content">
+        <div class="flex w-full p-2 rounded lg:flex-row bg-neutral-100">
         
             
-            <x-form wire:submit="save" >
-                <div class="grid grid-cols-2 gap-4">
+            <x-form wire:submit="save" class="w-full">
+                <div class="grid w-full grid-cols-2 gap-4">
                     <x-input label="Name" wire:model="name" icon="mdi.asterisk" />
                     <x-select label="Layout" :options="$layouts" wire:model.blur="layout" icon="mdi.asterisk" placeholder="Pick One" />
                     
@@ -38,7 +42,7 @@
                     <x-input label="Title" wire:model="title" />
                     <x-select label="CTA Link" :options="$cta_links" wire:model="cta_link" placeholder="Link to Section"/>
                     <x-input label="CTA Text" wire:model="cta_text" />
-                    <x-textarea label="Content" wire:model="content" />
+                    <x-markdown label="Content" wire:model="content" folder="cms/content/images" />
                     {{-- Show Choice options based on layout type --}}
                     @if($layout == 'choice')
                         <x-tabs selected='page-one'>
@@ -74,7 +78,7 @@
                         <x-button label="Save" type="submit" class="btn-primary" spinner="save" />
                         <x-input wire:model="cms_page_id" hidden />
                         @if($saved)
-                            <x-alert class="alert-success mt-5" message="Saved Successfully">
+                            <x-alert class="mt-5 alert-success" message="Saved Successfully">
                                 <x-slot name="actions">
                                     <x-button label="..Back to {{ $page->title }}" link="{{ $returnUrl }}" />
                                 </x-slot>
@@ -84,6 +88,6 @@
                 </div>
                 
             </x-form>
-        </x-card>
+        </div>
     </div>
  

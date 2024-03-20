@@ -18,7 +18,7 @@
             {{-- <x-input label="Application Name" wire:model="application_name" /> --}}
             {{-- TODO: Add better support for Twitter cards --}}
             {{-- <x-input label="Type Card" wire:model="type_card" /> --}}
-            <x-input label="Image" wire:model="image" />
+            <x-input label="Image" wire:model="ogimage" />
             <x-input label="Copyright" wire:model="copyright" />
             <hr class="my-5" />
             <x-button label="Save" type="submit" spinner="save" />
