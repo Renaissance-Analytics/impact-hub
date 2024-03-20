@@ -143,9 +143,9 @@ class SEdit extends Component
         $this->name = $this->section->name;
         $this->layout = $this->section->layout;
         if($this->layout == 'choice'){
-            $this->choicesContent = json_decode($this->section->content);
+            $this->content = json_decode($this->section->content);
         }else{
-
+            $this->content = $this->section->content;
         }
 
         if(!$section->id){

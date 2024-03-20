@@ -1,4 +1,4 @@
-<x-base-layout :title="'HIIIIIII'">
+<x-base-layout :title="'Admin'">
 
 
     @php
@@ -6,7 +6,7 @@
         $isGame = $currentUrl == url('/admin/game') || Str::startsWith($currentUrl, url('/admin/game/'));
     @endphp
     {{-- The main content with `full-width`  --}}
-    <x-main full-width>
+    <x-main full-width class="p-0 m-0">
         @if($isGame)
             <x-slot:sidebar drawer="main-drawer" collapsable class="bg-base-100 lg:bg-inherit">
                 <x-menu>
@@ -45,7 +45,7 @@
 
 
         {{-- The `$slot` goes here --}}
-        <x-slot:content>
+        <x-slot:content class="p-0 m-0">
             {{ $slot }}
         </x-slot:content>
 
