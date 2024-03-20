@@ -30,7 +30,7 @@ class PEdit extends Component
     public $published_at;
 
     public $ogimage;
-    public $copywrite;
+    public $copyright;
 
     public $showDrawer = false;
 
