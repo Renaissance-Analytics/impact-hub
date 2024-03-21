@@ -12,7 +12,13 @@
         <img src="{{ asset('storage/'.$section->image) }}" alt="{{ $section->title }}" class="max-w-sm rounded-lg shadow-2x1" />
         <div>
             <h1 class="text-5xl font-bold">{{ $section->title }}</h1>
-            <p class="py-6">{!! Str::markdown($section->content) !!}</p>
+            @if(Str::contains($section->content, ['<', '>'])) <!-- Check if content contains HTML tags -->
+                <p class="py-6">{!! $section->content !!}</p> <!-- Render as HTML -->
+            @elseif(Str::contains($section->content, ['**', '__'])) <!-- Check for markdown indicators -->
+                <p class="py-6">{!! Str::markdown($section->content) !!}</p> <!-- Render as Markdown -->
+            @else
+                <p class="py-6">{{ $section->content }}</p> <!-- Render as plain text -->
+            @endif
         @if ($section->cta_link)
             <button @click="document.getElementById('{{ $section->url_safe_cta_link }}').scrollIntoView({ behavior: 'smooth' })" class="btn btn-primary">{{ $section->cta_text ?? 'Click here' }}</button>
         @endif
@@ -23,7 +29,13 @@
     <div class="text-center hero-content">
         <div class="max-w-md">
             <h1 class="text-5xl font-bold">{{ $section->title }}</h1>
-            <p class="py-6">{!! Str::markdown($section->content) !!}</p>
+            @if(Str::contains($section->content, ['<', '>'])) <!-- Check if content contains HTML tags -->
+                <p class="py-6">{!! $section->content !!}</p> <!-- Render as HTML -->
+            @elseif(Str::contains($section->content, ['**', '__'])) <!-- Check for markdown indicators -->
+                <p class="py-6">{!! Str::markdown($section->content) !!}</p> <!-- Render as Markdown -->
+            @else
+                <p class="py-6">{{ $section->content }}</p> <!-- Render as plain text -->
+            @endif
         @if ($section->cta_link)
             <button @click="document.getElementById('{{ $section->url_safe_cta_link }}').scrollIntoView({ behavior: 'smooth' })" class="btn btn-primary">{{ $section->cta_text ?? 'Click here' }}</button>
         @endif
