@@ -14,10 +14,8 @@
             <h1 class="text-5xl font-bold">{{ $section->title }}</h1>
             @if(Str::contains($section->content, ['<', '>'])) <!-- Check if content contains HTML tags -->
                 <p class="py-6">{!! $section->content !!}</p> <!-- Render as HTML -->
-            @elseif(Str::contains($section->content, ['**', '__'])) <!-- Check for markdown indicators -->
-                <p class="py-6">{!! Str::markdown($section->content) !!}</p> <!-- Render as Markdown -->
             @else
-                <p class="py-6">{{ $section->content }}</p> <!-- Render as plain text -->
+                <p class="py-6">{!! Str::markdown($section->content) !!}</p> <!-- Render as Markdown -->
             @endif
         @if ($section->cta_link)
             <button @click="document.getElementById('{{ $section->url_safe_cta_link }}').scrollIntoView({ behavior: 'smooth' })" class="btn btn-primary">{{ $section->cta_text ?? 'Click here' }}</button>
@@ -31,10 +29,8 @@
             <h1 class="text-5xl font-bold">{{ $section->title }}</h1>
             @if(Str::contains($section->content, ['<', '>'])) <!-- Check if content contains HTML tags -->
                 <p class="py-6">{!! $section->content !!}</p> <!-- Render as HTML -->
-            @elseif(Str::contains($section->content, ['**', '__'])) <!-- Check for markdown indicators -->
-                <p class="py-6">{!! Str::markdown($section->content) !!}</p> <!-- Render as Markdown -->
             @else
-                <p class="py-6">{{ $section->content }}</p> <!-- Render as plain text -->
+                <p class="py-6">{!! Str::markdown($section->content) !!}</p> <!-- Render as Markdown -->
             @endif
         @if ($section->cta_link)
             <button @click="document.getElementById('{{ $section->url_safe_cta_link }}').scrollIntoView({ behavior: 'smooth' })" class="btn btn-primary">{{ $section->cta_text ?? 'Click here' }}</button>
