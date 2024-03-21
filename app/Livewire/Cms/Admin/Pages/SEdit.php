@@ -42,25 +42,11 @@ class SEdit extends Component
     public $content;
     public $image;
     public $status;
-    //Support for Page Choice Section Type
-    //TODO: Modify to support JSON data storage for Section type specific data
-    public $page_one_id;
-    public $page_one_blurb;
-    public $page_one_image;
-    public $page_one_color;
-    public $page_one_cta_text;
-    public $page_one_cta_icon;
-
-    public $page_two_id;
-    public $page_two_blurb;
-    public $page_two_image;
-    public $page_two_color;
-    public $page_two_cta_icon;
-    public $page_two_cta_text;
+    
 
 
     public $returnUrl;
-
+    public $new_image;
     public $previewImageUrl = null;
     //Variables for the form
     public $layouts;
@@ -70,35 +56,7 @@ class SEdit extends Component
    //TODO: Add Content Layout Previews
 
 
-    public function rules()
-    {
-        return [
-            'name' => 'required|string|max:255',
-            'layout' => 'required|string|max:255',
-            'cms_page_id' => 'required|string',
-            'order' => 'required|integer',
-            'bgcolor' => 'nullable|string|max:255',
-            'cta_link' => 'nullable|integer|max:255',
-            'cta_text' => 'nullable|string|max:255',
-            'title' => 'nullable|string|max:255',
-            'content' => 'nullable|string',
-            'image' => 'nullable|image|max:2048',
-            'status' => 'nullable|string|max:255',
-            //Support for Page Choise Section Type
-            'page_one_id' => 'nullable|string|max:255',
-            'page_one_blurb' => 'nullable|string|max:255',
-            'page_one_image' => 'nullable|string|max:255',
-            'page_one_color' => 'nullable|string|max:255',
-            'page_one_cta_icon' => 'nullable|string|max:255',
-            'page_one_cta_text' => 'nullable|string|max:255',
-            'page_two_id' => 'nullable|string|max:255',
-            'page_two_blurb' => 'nullable|string|max:255',
-            'page_two_image' => 'nullable|string|max:255',
-            'page_two_color' => 'nullable|string|max:255',
-            'page_two_cta_icon' => 'nullable|string|max:255',
-            'page_two_cta_text' => 'nullable|string|max:255',
-        ];
-    }
+    
 
     public function mount(?CmsSection $section, CmsPage $page)
     {
@@ -164,18 +122,18 @@ class SEdit extends Component
         $this->image = $this->section->image;
         $this->status = $this->section->status;
         //Support for Page Choise Section Type
-        $this->page_one_id = $this->section->page_one_id;
-        $this->page_one_blurb = $this->section->page_one_blurb;
-        $this->page_one_image = $this->section->page_one_image;
-        $this->page_one_color = $this->section->page_one_color;
-        $this->page_one_cta_icon = $this->section->page_one_cta_icon;
-        $this->page_one_cta_text = $this->section->page_one_cta_text;
-        $this->page_two_id = $this->section->page_two_id;
-        $this->page_two_blurb = $this->section->page_two_blurb;
-        $this->page_two_image = $this->section->page_two_image;
-        $this->page_two_color = $this->section->page_two_color;
-        $this->page_two_cta_icon = $this->section->page_two_cta_icon;
-        $this->page_two_cta_text = $this->section->page_two_cta_text;
+        // $this->page_one_id = $this->section->page_one_id;
+        // $this->page_one_blurb = $this->section->page_one_blurb;
+        // $this->page_one_image = $this->section->page_one_image;
+        // $this->page_one_color = $this->section->page_one_color;
+        // $this->page_one_cta_icon = $this->section->page_one_cta_icon;
+        // $this->page_one_cta_text = $this->section->page_one_cta_text;
+        // $this->page_two_id = $this->section->page_two_id;
+        // $this->page_two_blurb = $this->section->page_two_blurb;
+        // $this->page_two_image = $this->section->page_two_image;
+        // $this->page_two_color = $this->section->page_two_color;
+        // $this->page_two_cta_icon = $this->section->page_two_cta_icon;
+        // $this->page_two_cta_text = $this->section->page_two_cta_text;
 
     }
     //Reset Image
@@ -183,6 +141,7 @@ class SEdit extends Component
     {
         $this->image = null;
         $this->previewImageUrl = null;
+        $this->new_image = null;
         $this->imageUpdated = true;
     }
 
@@ -200,30 +159,56 @@ class SEdit extends Component
 
     public function save()
     {
+        $rules = [
+            'name' => 'required|string|max:255',
+            'layout' => 'required|string|max:255',
+            'cms_page_id' => 'required|string',
+            'order' => 'required|integer',
+            'bgcolor' => 'nullable|string|max:255',
+            'cta_link' => 'nullable|integer|max:255',
+            'cta_text' => 'nullable|string|max:255',
+            'title' => 'nullable|string|max:255',
+            'new_image' => 'nullable|image|max:2048',
+            'content' => 'nullable|string',
+            'status' => 'nullable|string|max:255',
+        ];
 
-        $validatedData = $this->validate();
-        if($this->image && $this->imageUpdated){
-            $validatedData['image'] = $this->image->store('cms', 'public');
+        //dd($this->image);
+        $validatedData = $this->validate($rules);
 
+        // Handle image upload if a new image is provided and marked for update
+        if ($this->new_image && $this->imageUpdated) {
+            // Delete the old image from storage if it exists
+            if ($this->section->image) {
+                Storage::disk('public')->delete($this->section->image);
+            }
+            // Store the new image and update the validated data with the new image path
+            $validatedData['image'] = $this->new_image->store('cms', 'public');
         }
 
-        if($this->section->id){
-            if($this->section->update($validatedData)){
-                $this->success('Section Updated!');
-                $this->saved = true;
-
-            }else{
+        // Check if we are updating an existing section or creating a new one
+        if ($this->section->exists) {
+            // Update the existing section
+            $updateStatus = $this->section->update($validatedData);
+            if ($updateStatus) {
+                $this->success('Section updated successfully!');
+            } else {
                 $this->error('Error updating section!');
             }
-            $this->success('Section Saved!');
-            $this->saved = true;
-
-        }else{
-            CmsSection::create($validatedData);
-            $this->success('New Section Saved!');
-            $this->saved = true;
+        } else {
+            // Create a new section
+            $newSection = CmsSection::create($validatedData);
+            if ($newSection) {
+                $this->success('New section saved successfully!');
+                // Update the component's section property to reflect the newly created section
+                $this->section = $newSection;
+            } else {
+                $this->error('Error saving new section!');
+            }
         }
 
+        // Redirect to the return URL after successful save/update
+        $this->redirect($this->returnUrl);
     }
 
     public function render()
@@ -235,7 +220,7 @@ class SEdit extends Component
 
     public function updating($name, $value)
     {
-        if($name == 'image'){
+        if($name == 'new_image'){
             $this->imageUpdated = true;
             $this->previewImageUrl = $value->temporaryUrl();
         }

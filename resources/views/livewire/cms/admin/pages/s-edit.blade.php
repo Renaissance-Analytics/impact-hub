@@ -17,17 +17,32 @@
             
             <x-form wire:submit="save" class="w-full">
                 <div class="grid w-full grid-cols-2 gap-4">
-                    <x-input label="Name" wire:model="name" icon="mdi.asterisk" />
-                    <x-select label="Layout" :options="$layouts" wire:model.blur="layout" icon="mdi.asterisk" placeholder="Pick One" />
+                    <div>
+                        <x-input label="Name" wire:model="name" icon="mdi.asterisk" />
+                        @error('name') <span class="error">{{ $message }}</span> @enderror
+                    </div>
+                    <div>
+                        <x-select label="Layout" :options="$layouts" wire:model.blur="layout" icon="mdi.asterisk" placeholder="Pick One" />
+                        @error('layout') <span class="error">{{ $message }}</span> @enderror
+                    </div>
                     
-                    <x-input label="Order" wire:model="order" type="number" icon="mdi.asterisk" />
-                    <x-select label="Status" :options="[['id'=>'draft', 'name'=>'Draft'], ['id'=>'published', 'name'=>'Published']]" wire:model="status" />
+                    <div>
+                        <x-input label="Order" wire:model="order" type="number" icon="mdi.asterisk" />
+                        @error('order') <span class="error">{{ $message }}</span> @enderror
+                    </div>
+                    <div>
+                        <x-select label="Status" :options="[['id'=>'draft', 'name'=>'Draft'], ['id'=>'published', 'name'=>'Published']]" wire:model="status" />
+                        @error('status') <span class="error">{{ $message }}</span> @enderror
+                    </div>
                     
-                    <x-input label="Background Color" wire:model="bgcolor" />
+                    <div>
+                        <x-input label="Background Color" wire:model="bgcolor" />
+                        @error('bgcolor') <span class="error">{{ $message }}</span> @enderror
+                    </div>
                     
-                    
+                    <div class="col-span-2">
                     @if(!$image)
-                        <x-file label="Image" hint="Only PNG/JPG" wire:model="image" accept="image/png, image/jpeg" class="col-span-2"/>
+                        <x-file label="Image" hint="Only PNG/JPG" wire:model="new_image" accept="image/png, image/jpeg" />
                         @error('image') <span class="error">{{ $message }}</span> @enderror
                                                 
                         <div class="col-span-2">
@@ -38,37 +53,27 @@
                             <x-button class="btn-warning" label="Clear Saved Image" wire:click="clearImage" spinner="clearImage" />
                         </div>
                     @endif
+                        @error('new_image') <span class="error">{{ $message }}</span> @enderror
+                    </div>
                     <x-header title="Content Options" class="col-span-2" />
-                    <x-input label="Title" wire:model="title" />
-                    <x-select label="CTA Link" :options="$cta_links" wire:model="cta_link" placeholder="Link to Section"/>
-                    <x-input label="CTA Text" wire:model="cta_text" />
-                    <x-markdown label="Content" wire:model="content" folder="cms/content/images" />
-                    {{-- Show Choice options based on layout type --}}
-                    @if($layout == 'choice')
-                        <x-tabs selected='page-one'>
-                        {{-- Page One --}}
-                            <x-tab name='page-one' icon="mdi.numeric-1-circle" class="col-span-2">
-                                <x-select label="Page One" :options="$pages" wire:model="page_one_id" />
-                                <x-input label="Blurb" wire:model="page_one_blurb" />
-                                <x-input label="Image" wire:model="page_one_image" />
-                                <x-input label="Color" wire:model="page_one_color" />
-                                <x-input label="CTA Icon" wire:model="page_one_cta_icon" />
-                                <x-input label="CTA Text" wire:model="page_one_cta_text" />
-                            </x-tab>
-                        {{-- Page Two --}}
-                            <x-tab name='page-two' label='Page Two' icon="mdi.numeric-2-circle" class="col-span-2">
-                                <x-select label="Page Two" :options="$pages" wire:model="page_two_id" />
-                                <x-input label="Blurb" wire:model="page_two_blurb" />
-                                <x-input label="Image" wire:model="page_two_image" />
-                                <x-input label="Color" wire:model="page_two_color" />
-                                <x-input label="CTA Icon" wire:model="page_two_cta_icon" />
-                                <x-input label="CTA Text" wire:model="page_two_cta_text" />
-                            </x-tab>
+                    <div>
+                        <x-input label="Title" wire:model="title" />
+                        @error('title') <span class="error">{{ $message }}</span> @enderror
+                    </div>
+                    <div>
+                        <x-select label="CTA Link" :options="$cta_links" wire:model="cta_link" placeholder="Link to Section"/>
+                        @error('cta_link') <span class="error">{{ $message }}</span> @enderror
+                    </div>
+                    <div>
+                        <x-input label="CTA Text" wire:model="cta_text" />
+                        @error('cta_text') <span class="error">{{ $message }}</span> @enderror
+                    </div>
+                    <div class="col-span-2">
+                        <x-markdown label="Content - Markdown" wire:model="content" folder="cms/content/images" />
+                        @error('content') <span class="error">{{ $message }}</span> @enderror
+                    </div>
                     
-                        </x-tabs>
-
-                    @endif
-                
+                    
                     <div class="col-span-2 text-align-right">
                         @if($editing)
                             <x-button label="Delete" wire:click.prevent="delete" class="btn-danger justify-self-start" spinner="delete" />

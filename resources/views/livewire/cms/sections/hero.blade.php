@@ -4,7 +4,7 @@
     <div class="max-w-md">
       
       <h1 class="mb-5 text-5xl font-bold" >{{ $section->title }}</h1>
-      <p class="mb-5">{!! $section->content !!}</p>
+      <p class="mb-5">{!! Str::markdown($section->content) !!}</p>
         @if ($section->cta_link)
             <button @click="document.getElementById('{{ $section->url_safe_cta_link }}').scrollIntoView({ behavior: 'smooth' })" class="btn btn-primary">{{ $section->cta_text ?? 'Click here' }}</button>
         @endif
