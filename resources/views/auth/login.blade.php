@@ -1,5 +1,5 @@
 <x-guest-layout>
-    <x-authentication-card class="max-w-screen-sm">
+    <x-authentication-card class="max-w-screen-sm md:w-4/5 lg:w-3/5">
         <x-slot name="logo">
             <x-authentication-card-logo />
         </x-slot>

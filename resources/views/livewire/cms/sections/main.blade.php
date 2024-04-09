@@ -8,7 +8,7 @@
 
 @endphp
 @if ($section->image)
-    <div class="flex-col hero-content lg:flex-row">
+    <div class="flex-col hero-content md:flex-row">
         <img src="{{ asset('storage/'.$section->image) }}" alt="{{ $section->title }}" class="max-w-sm rounded-lg shadow-2x1" />
         <div>
             <h1 class="text-5xl font-bold">{{ $section->title }}</h1>
