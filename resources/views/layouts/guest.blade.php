@@ -8,7 +8,6 @@
         <title>{{ config('app.name', 'Laravel') }}</title>
 
         <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
         <!-- Scripts -->
@@ -18,7 +17,7 @@
         @livewireStyles
     </head>
     <body>
-        <div class="font-sans text-gray-900 dark:text-gray-100 antialiased">
+        <div class="font-sans antialiased text-gray-900 dark:text-gray-100">
             {{ $slot }}
         </div>
 <x-pbs />

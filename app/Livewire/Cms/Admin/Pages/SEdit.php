@@ -183,7 +183,7 @@ class SEdit extends Component
                 Storage::disk('public')->delete($this->section->image);
             }
             // Store the new image and update the validated data with the new image path
-            $validatedData['image'] = $this->new_image->store('cms', 'public');
+            $validatedData['image'] = $this->new_image->store('cms');
         }
 
         // Check if we are updating an existing section or creating a new one
